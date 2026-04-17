@@ -45,7 +45,7 @@ export default function PatientPhotoSlider() {
   };
 
   return (
-    <section className="py-12 md:py-16 mt-10 md:mt-14 bg-white relative z-20 overflow-hidden">
+    <section id="patient-gallery" className="py-12 md:py-16 mt-10 md:mt-14 bg-white relative z-20 overflow-hidden">
       <div className="max-w-[1300px] mx-auto px-5 mb-8 text-center flex flex-col items-center">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-dark tracking-tight mb-3">
           Patient Gallery

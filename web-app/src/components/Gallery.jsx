@@ -34,7 +34,7 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section ref={containerRef} id="gallery" className="py-24 px-6 md:px-16 bg-[#FDFBF7]">
+    <section ref={containerRef} id="clinic-tour" className="py-24 px-6 md:px-16 bg-[#FDFBF7]">
       <div className="max-w-7xl mx-auto">
         <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Clinic Tour</h3>
         <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-16 tracking-tight">

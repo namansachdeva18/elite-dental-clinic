@@ -4,21 +4,26 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { name: 'Home', href: '/#' },
+  { name: 'Services', href: '/#services' },
   { name: 'About', href: '/#about' },
   { name: 'Results', href: '/#results' },
-  { name: 'Gallery', href: '/#gallery' },
+  { name: 'Clinic Tour', href: '/#clinic-tour' },
+  { name: 'Patient Gallery', href: '/#patient-gallery' },
   { name: 'Reviews', href: '/#reviews' },
-  { name: 'FAQs', href: '/#faqs' },
+  { name: 'FAQs', href: '/#faq' },
   { name: 'Contact', href: '/#contact' }
 ];
 
 const serviceLinks = [
-  { name: 'Root Canal Treatment', href: '/rct-treatment-sirsa' },
-  { name: 'Dental Implants', href: '/dental-implants-sirsa' },
-  { name: 'Braces & Aligners', href: '/braces-sirsa' },
-  { name: 'Teeth Whitening', href: '/teeth-whitening-sirsa' },
-  { name: 'Smile Designing', href: '/smile-designing-sirsa' },
-  { name: 'Wisdom Tooth Removal', href: '/wisdom-tooth-removal-sirsa' }
+  { name: 'Root Canal Treatment', href: '/#service-rct' },
+  { name: 'Dental Implants', href: '/#service-implants' },
+  { name: 'Braces & Aligners', href: '/#service-braces' },
+  { name: 'Teeth Whitening', href: '/#service-whitening' },
+  { name: 'Smile Designing', href: '/#service-smile-design' },
+  { name: 'Wisdom Tooth Removal', href: '/#service-wisdom-tooth' },
+  { name: 'Dental Crowns & Caps', href: '/#service-crowns' },
+  { name: 'Pediatric Dentistry', href: '/#service-pediatric' },
+  { name: 'Emergency Care', href: '/#service-emergency' }
 ];
 
 export default function Navbar() {
@@ -74,13 +79,20 @@ export default function Navbar() {
               <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none group-hover:pointer-events-auto overflow-hidden">
                 <div className="py-2">
                   {serviceLinks.map((service, idx) => (
-                    <Link 
+                    <a 
                       key={idx} 
-                      to={service.href}
+                      href={service.href}
                       className="block px-5 py-3 text-[14.5px] font-medium text-gray-700 hover:text-[#A38A5F] hover:bg-[#FDFBF7] transition-colors"
+                      onClick={(e) => {
+                         // Fallback smooth scroll specifically for dropdown
+                         if (service.href.includes('#')) {
+                           e.preventDefault();
+                           document.querySelector(service.href.split('/')[1]).scrollIntoView({behavior: 'smooth'});
+                         }
+                      }}
                     >
                       {service.name}
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -157,14 +169,20 @@ export default function Navbar() {
                 <div className={`overflow-hidden transition-all duration-300 ${isServicesOpen ? 'max-h-[400px] mt-4' : 'max-h-0'}`}>
                   <div className="flex flex-col gap-3 pl-4 border-l-2 border-gray-100">
                     {serviceLinks.map((service, idx) => (
-                      <Link 
+                      <a 
                         key={idx} 
-                        to={service.href} 
-                        onClick={() => setIsMobileMenuOpen(false)}
+                        href={service.href} 
+                        onClick={(e) => {
+                          setIsMobileMenuOpen(false);
+                          if (service.href.includes('#')) {
+                            e.preventDefault();
+                            document.querySelector(service.href.split('/')[1]).scrollIntoView({behavior: 'smooth'});
+                          }
+                        }}
                         className="text-base font-medium text-gray-600 active:text-[#A38A5F]"
                       >
                         {service.name}
-                      </Link>
+                      </a>
                     ))}
                   </div>
                 </div>

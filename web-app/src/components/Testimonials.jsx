@@ -131,7 +131,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section ref={sectionRef} id="testimonials" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10 relative overflow-hidden">
+    <section ref={sectionRef} id="reviews" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10 relative overflow-hidden">
       
       {/* Search Engine Optimization */}
       <h2 className="sr-only">Real Patient Reviews – Best Dental Clinic in Sirsa</h2>

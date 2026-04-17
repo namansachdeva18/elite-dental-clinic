@@ -26,7 +26,7 @@ export default function DoctorProfile() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 md:px-16 bg-white overflow-hidden border-t border-gray-100">
+    <section ref={sectionRef} id="about" className="py-24 px-6 md:px-16 bg-white overflow-hidden border-t border-gray-100">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
 
         {/* Doctor Image */}

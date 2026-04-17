@@ -51,7 +51,7 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={containerRef} id="transformations" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10">
+    <section ref={containerRef} id="results" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10">
       <div className="max-w-6xl mx-auto flex flex-col items-center ba-element">
 
         <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Real Transformations</h3>

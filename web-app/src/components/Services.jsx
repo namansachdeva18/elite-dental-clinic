@@ -7,46 +7,55 @@ gsap.registerPlugin(ScrollTrigger);
 
 const SERVICES = [
   {
+    id: "service-implants",
     title: "Dental Implants in Sirsa",
     description: "Restore missing teeth permanently with advanced dental implants in Sirsa. Get a natural-looking and long-lasting smile solution.",
     icon: <ShieldCheck className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-braces",
     title: "Orthodontics & Braces",
     description: "Achieve perfectly aligned teeth with braces and clear aligners. Customized orthodontic treatments for all age groups.",
     icon: <Layers className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-smile-design",
     title: "Smile Designing",
     description: "Enhance your smile with personalized smile designing treatments using modern cosmetic dentistry techniques.",
     icon: <Sparkles className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-rct",
     title: "Root Canal Treatment (RCT) in Sirsa",
     description: "Pain-free root canal treatment using advanced laser technology. Save infected teeth with quick and comfortable procedures.",
     icon: <Activity className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-wisdom-tooth",
     title: "Wisdom Tooth Removal",
     description: "Safe and painless wisdom tooth extraction performed by experienced dental specialists.",
     icon: <Scissors className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-whitening",
     title: "Teeth Whitening in Sirsa",
     description: "Brighten your smile with professional teeth whitening treatments for instant visible results.",
     icon: <Zap className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-crowns",
     title: "Dental Crowns & Caps",
     description: "Protect and restore damaged teeth with high-quality dental crowns for long-lasting strength and aesthetics.",
     icon: <Crown className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-pediatric",
     title: "Pediatric Dentistry",
     description: "Gentle dental care for children in a safe and friendly environment ensuring healthy smiles from an early age.",
     icon: <Baby className="text-[#9A7B4F] w-8 h-8 mb-4" />
   },
   {
+    id: "service-emergency",
     title: "Emergency Dental Care in Sirsa",
     description: "Get immediate treatment for dental pain, injury, or infection with our 24/7 emergency dental services.",
     icon: <Stethoscope className="text-[#9A7B4F] w-8 h-8 mb-4" />
@@ -83,7 +92,7 @@ export default function Services() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {SERVICES.map((service, i) => (
-            <div key={i} className="service-card h-full w-full">
+            <div key={i} id={service.id} className="service-card h-full w-full">
               <div className="group bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full relative overflow-hidden m-0">
                 {/* Decorative border highlight */}
                 <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 group-hover:bg-[#9A7B4F] transition-colors" />
