@@ -7,6 +7,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 const TRANSFORMATIONS = [
   {
+    category: "Crowns & Bridges",
+    desc: "Restore damaged or missing teeth with natural-looking crowns and bridges for a strong and confident smile.",
+    imgBefore: "/images/crowns-before.webp",
+    imgAfter: "/images/crowns-after.webp"
+  },
+  {
     category: "Teeth Whitening",
     desc: "Achieved a 6-shade brighter smile in a single 45-minute painless session.",
     imgBefore: "/images/before-1.webp",
