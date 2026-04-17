@@ -6,24 +6,8 @@ export default function Hero() {
   const containerRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
-  const navRef = useRef(null);
 
-  useEffect(() => {
-    // Nav scroll effect
-    gsap.to(navRef.current, {
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      },
-      backgroundColor: 'rgba(255, 255, 255, 0.98)',
-      backdropFilter: 'blur(16px)',
-      boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)',
-      duration: 0.4
-    });
-
-    const ctx = gsap.context(() => {
+  useEffect(() => {    const ctx = gsap.context(() => {
       gsap.from(leftRef.current.children, { 
         opacity: 0, 
         y: 30, 
@@ -43,36 +27,6 @@ export default function Hero() {
 
   return (
     <section ref={containerRef} className="relative w-full min-h-[90dvh] flex flex-col bg-white overflow-hidden pb-16 lg:pb-0">
-      
-      {/* Navbar exactly matching screenshot 2 */}
-      <nav ref={navRef} className="w-full z-50 px-6 py-4 border-b border-gray-100 bg-white transition-all duration-300">
-        <div className="max-w-7xl mx-auto w-full flex justify-between items-center">
-          
-          {/* Logo Block */}
-          <a href="/" className="flex-shrink-0 flex items-center gap-3">
-            <img src="/images/logo.webp" alt="Elite Dental Clinic Logo" className="h-10 md:h-[50px] w-auto object-contain" />
-            <span className="font-display font-bold text-2xl tracking-tighter text-[#A38A5F] hidden sm:block mt-1">Elite Dental Clinic</span>
-          </a>
-
-          {/* Center Nav Links */}
-          <div className="hidden lg:flex items-center gap-8 text-sm font-semibold text-gray-700">
-            <a href="#services" className="hover:text-[#A38A5F] transition-colors">Services</a>
-            <a href="#why-choose-us" className="hover:text-[#A38A5F] transition-colors">Why Choose Us</a>
-            <a href="#testimonials" className="hover:text-[#A38A5F] transition-colors">Reviews</a>
-            <a href="#contact" className="hover:text-[#A38A5F] transition-colors">Contact</a>
-          </div>
-
-          {/* Right Nav Actions */}
-          <div className="flex items-center gap-6">
-            <a href="tel:+919306299901" className="hidden md:flex items-center gap-2 font-bold text-sm text-gray-800">
-              <Phone size={14} className="text-[#A38A5F]" /> 93062-99901
-            </a>
-            <a href="#book" className="bg-[#A38A5F] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-dark transition-colors shadow-sm">
-              Book Appointment
-            </a>
-          </div>
-        </div>
-      </nav>
 
       {/* Main Hero Split */}
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row flex-1 mt-0 h-full">

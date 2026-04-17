@@ -1,6 +1,6 @@
 import React from 'react';
 import Hero from './Hero';
-import InstantTrust from './InstantTrust';
+
 import SocialProofBar from './SocialProofBar';
 import WhyChooseUs from './WhyChooseUs';
 import Services from './Services';
@@ -9,6 +9,7 @@ import BeforeAfter from './BeforeAfter';
 import HowItWorks from './HowItWorks';
 import Gallery from './Gallery';
 import Testimonials from './Testimonials';
+import PatientPhotoSlider from './PatientPhotoSlider';
 import FAQ from './FAQ';
 import Contact from './Contact';
 import FinalCTA from './FinalCTA';
@@ -17,7 +18,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <InstantTrust />
+
       <SocialProofBar />
       <WhyChooseUs />
       <Services />
@@ -26,6 +27,7 @@ export default function Home() {
       <HowItWorks />
       <Gallery />
       <Testimonials />
+      <PatientPhotoSlider />
       <FAQ />
       <Contact />
       <FinalCTA />

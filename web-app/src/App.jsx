@@ -6,6 +6,7 @@ import Lenis from 'lenis';
 
 import CustomCursor from './components/CustomCursor';
 import TopBanner from './components/TopBanner';
+import Navbar from './components/Navbar';
 import FloatingActions from './components/FloatingActions';
 import Home from './components/Home';
 import Footer from './components/Footer';
@@ -107,6 +108,7 @@ function App() {
       
       {/* Global Elements */}
       <TopBanner />
+      <Navbar />
       <FloatingActions />
       
       <main className="w-full min-h-screen bg-[#FDFBF7] selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
