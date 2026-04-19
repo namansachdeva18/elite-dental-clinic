@@ -99,7 +99,7 @@ export default function Navbar() {
             </div>
 
             {/* Mapping remaining standard links */}
-            {navLinks.slice(1).map((link, idx) => (
+            {navLinks.slice(2).map((link, idx) => (
               <a 
                 key={idx} 
                 href={link.href}
@@ -188,7 +188,7 @@ export default function Navbar() {
                 </div>
               </div>
 
-              {navLinks.slice(1).map((link, idx) => (
+              {navLinks.slice(2).map((link, idx) => (
                 <a 
                   key={idx} 
                   href={link.href} 
