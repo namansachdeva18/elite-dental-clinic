@@ -10,6 +10,8 @@ import Navbar from './components/Navbar';
 import FloatingActions from './components/FloatingActions';
 import Home from './components/Home';
 import Footer from './components/Footer';
+import VideoPage from './components/VideoPage';
+import { REVIEWS } from './components/Testimonials';
 
 // A mock placeholder for the SEO pages
 function ServiceSEOPage({ title }) {
@@ -59,10 +61,11 @@ function App() {
     "@context": "https://schema.org",
     "@type": "Dentist",
     "name": "Elite Dental Clinic",
-    "image": "https://elitedentalclinicsirsa.com/logo.png",
-    "@id": "https://elitedentalclinicsirsa.com",
-    "url": "https://elitedentalclinicsirsa.com",
+    "image": "https://www.elitedentalclinic.info/images/logo.webp",
+    "@id": "https://www.elitedentalclinic.info/#dentist",
+    "url": "https://www.elitedentalclinic.info",
     "telephone": "+919306299901",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Street Number 2, Multani Colony",
@@ -85,7 +88,28 @@ function App() {
     },
     "sameAs": [
       "https://www.instagram.com/elitedentalclinic.sirsa"
-    ]
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": REVIEWS.length.toString(),
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": REVIEWS.map((review) => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": review.name
+      },
+      "reviewBody": review.text,
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }))
   };
 
   return (
@@ -95,11 +119,11 @@ function App() {
         <title>Best Dental Clinic in Sirsa | Pain-Free Dentist | Elite Dental Clinic</title>
         <meta name="description" content="Looking for the best dentist in Sirsa? Elite Dental Clinic offers pain-free RCT, implants, braces, and teeth whitening. Book your appointment today!" />
         <meta name="keywords" content="dentist in Sirsa, best dental clinic in Sirsa, Root Canal Treatment, RCT, dental implants Sirsa, braces, teeth whitening, pain-free dentistry" />
-        <link rel="canonical" href="https://elitedentalclinicsirsa.com" />
+        <link rel="canonical" href="https://www.elitedentalclinic.info/" />
         <meta property="og:title" content="Best Dental Clinic in Sirsa | Pain-Free Dentist | Elite Dental Clinic" />
         <meta property="og:description" content="Elite Dental Clinic offers top-notch, pain-free dental treatments in Sirsa. Contact us for RCT, implants, braces, and more." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://elitedentalclinicsirsa.com" />
+        <meta property="og:url" content="https://www.elitedentalclinic.info/" />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>
@@ -119,6 +143,7 @@ function App() {
           <Route path="/rct-treatment-sirsa" element={<ServiceSEOPage title="Root Canal Treatment in Sirsa" />} />
           <Route path="/teeth-whitening-sirsa" element={<ServiceSEOPage title="Teeth Whitening in Sirsa" />} />
           <Route path="/dental-implants-sirsa" element={<ServiceSEOPage title="Dental Implants in Sirsa" />} />
+          <Route path="/videos/prabhnoor-testimonial" element={<VideoPage />} />
         </Routes>
         <Footer />
       </main>

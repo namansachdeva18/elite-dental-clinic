@@ -5,7 +5,7 @@ import { Star, Quote, ChevronLeft, ChevronRight, CheckCircle2 } from 'lucide-rea
 
 gsap.registerPlugin(ScrollTrigger);
 
-const REVIEWS = [
+export const REVIEWS = [
   {
     name: "Naman Sachdeva",
     text: "I’ve visited this clinic a couple of times now, and every time the experience has been really good... Overall, a very reliable place for dental treatment.",
@@ -111,31 +111,11 @@ export default function Testimonials() {
     }
   };
 
-  // Build JSON-LD Structured Data payload
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "name": "Elite Dental Clinic",
-    "review": REVIEWS.map((review) => ({
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": review.name
-      },
-      "reviewBody": review.text,
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5"
-      }
-    }))
-  };
-
   return (
     <section ref={sectionRef} id="reviews" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10 relative overflow-hidden">
       
       {/* Search Engine Optimization */}
       <h2 className="sr-only">Real Patient Reviews – Best Dental Clinic in Sirsa</h2>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
@@ -252,6 +232,11 @@ export default function Testimonials() {
             </p>
             <div className="inline-flex bg-[#9A7B4F]/10 text-[#9A7B4F] text-xs font-bold px-4 py-2 rounded-xl items-center gap-2 uppercase tracking-widest shadow-sm">
                Verified International Patient
+            </div>
+            <div className="mt-6 flex justify-center">
+               <a href="/videos/prabhnoor-testimonial" className="inline-flex items-center justify-center bg-white border border-gray-200 text-dark font-bold px-5 py-3 rounded-full hover:border-[#A38A5F] transition-colors shadow-sm text-sm">
+                 Watch Full Testimonial Video
+               </a>
             </div>
           </div>
         </div>
