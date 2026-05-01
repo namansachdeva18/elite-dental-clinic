@@ -60,7 +60,7 @@ export default function Navbar() {
           {/* Logo element */}
           <Link to="/" onClick={() => window.scrollTo(0,0)} className="flex items-center gap-3 group z-50">
             <img src="/images/logo.webp" alt="Elite Dental Clinic Logo" className="h-[40px] md:h-[50px] w-auto object-contain group-hover:scale-[1.03] transition-transform duration-300" />
-            <span className="font-display font-bold text-[19px] md:text-[22px] tracking-tighter text-[#A38A5F] hidden sm:block mt-1">Elite Dental Clinic</span>
+            <span className="font-display font-bold text-[19px] md:text-[22px] tracking-tighter text-[#A38A5F] hidden sm:block mt-1 navbar-brand-text">Elite Dental Clinic</span>
           </Link>
 
           {/* Desktop Navigation Links */}

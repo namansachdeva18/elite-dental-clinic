@@ -13,7 +13,7 @@ export default function TopBanner() {
         {/* Urgent Offer */}
         <div className="flex items-center gap-2">
           {/* <Clock size={16} /> */}
-          <span>ELITE DENTAL CLINIC</span>
+          <span className="header-clinic-name">ELITE DENTAL CLINIC</span>
         </div>
 
         {/* Action & Location */}

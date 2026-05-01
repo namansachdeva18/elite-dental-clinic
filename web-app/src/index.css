@@ -4,6 +4,7 @@
 
 @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,900&f[]=general-sans@200,300,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
 
 html {
   scroll-behavior: smooth;
@@ -60,4 +61,12 @@ body::after {
 * {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Custom Brand Font for Clinic Name */
+.header-clinic-name,
+.navbar-brand-text {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
