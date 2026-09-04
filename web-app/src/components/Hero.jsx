@@ -45,56 +45,57 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto flex flex-col-reverse lg:flex-row flex-1 mt-0 h-full">
         
         {/* Left Column Text */}
-        <div ref={leftRef} className="w-full lg:w-[55%] flex flex-col justify-center px-6 md:px-12 py-12 lg:py-0 z-20 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none lg:bg-transparent">
+        <div ref={leftRef} className="w-full lg:w-[55%] flex flex-col justify-center px-4 sm:px-6 md:px-12 py-6 sm:py-8 lg:py-0 z-20 bg-white/95 backdrop-blur-sm lg:backdrop-blur-none lg:bg-transparent">
           
           {/* Campaign Teaser Badge on Homepage */}
           {active && (
             <Link 
               to="/anniversary-offer"
               onClick={() => trackConversionEvent('hero_anniversary_pill_click', { source: 'homepage_hero' })}
-              className="inline-flex items-center gap-2 bg-[#FAF8F5] border border-[#9A7B4F]/30 hover:border-[#9A7B4F] text-[#80633C] px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide mb-4 w-max transition-all shadow-sm group cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#FAF8F5] border border-[#9A7B4F]/30 hover:border-[#9A7B4F] text-[#80633C] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide mb-3 w-max transition-all shadow-xs group cursor-pointer"
             >
-              <Sparkles size={13} className="text-[#9A7B4F]" />
+              <Sparkles size={12} className="text-[#9A7B4F]" />
               <span>Anniversary Special: <strong>20% OFF</strong> Premium Treatments</span>
-              <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform text-[#9A7B4F]" />
+              <ArrowRight size={11} className="group-hover:translate-x-0.5 transition-transform text-[#9A7B4F]" />
             </Link>
           )}
 
-          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-dark mb-6 tracking-tight leading-[1.1]">
-            Pain-Free Dental<br/>
+          <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark mb-3 tracking-tight leading-[1.12]">
+            Pain-Free Dental <br className="hidden sm:inline" />
             Care in Sirsa <br className="hidden lg:block"/>
-            <span className="text-[#A38A5F]">You Can Trust.</span>
+            <span className="bg-gradient-to-r from-[#9A7B4F] via-[#B89355] to-[#80633C] bg-clip-text text-transparent">You Can Trust.</span>
           </h1>
           
-          {/* Green Checkmark List */}
-          <div className="flex flex-col gap-3 mb-10 max-w-sm">
-            <div className="flex items-center gap-3 text-gray-700 font-semibold text-lg">
-               <CheckCircle2 size={20} className="text-green-500 flex-shrink-0" />
-               <span>5⭐ Rated Clinic</span>
+          {/* Subtle Dark Contrast Feature Pill Box - High density, minimal height */}
+          <div className="bg-gradient-to-r from-[#1C1813] to-[#120E0A] text-white p-3 rounded-2xl border border-[#9A7B4F]/30 mb-5 max-w-md shadow-md flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-200">
+               <span className="text-[#D4AF37]">⭐</span>
+               <span>5.0 Rated Clinic</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-700 font-semibold text-lg">
-               <CheckCircle2 size={20} className="text-green-500 flex-shrink-0" />
-               <span>Advanced Laser Technology</span>
+            <div className="w-1 h-1 rounded-full bg-[#9A7B4F]" />
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-200">
+               <CheckCircle2 size={13} className="text-emerald-400 flex-shrink-0" />
+               <span>Advanced Laser</span>
             </div>
-            <div className="flex items-center gap-3 text-gray-700 font-semibold text-lg">
-               <CheckCircle2 size={20} className="text-green-500 flex-shrink-0" />
-               <span>Consultation Just ₹200</span>
+            <div className="w-1 h-1 rounded-full bg-[#9A7B4F]" />
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-[#F3E5AB]">
+               <span>Doctor Consultation ₹200</span>
             </div>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3 mb-8">
-              <a href="#book" className="flex items-center justify-center bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold px-6 py-3.5 rounded-full hover:brightness-110 transition-all shadow-lg shadow-[#9A7B4F]/25 text-sm active:scale-95">
+          <div className="flex flex-wrap gap-2.5 mb-5">
+              <a href="#book" className="flex items-center justify-center bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold px-5 py-2.5 rounded-xl hover:brightness-110 transition-all shadow-md text-xs sm:text-sm active:scale-95">
                  Book Consultation &rarr;
               </a>
-              <a href={`tel:${CAMPAIGN_CONFIG.phone}`} className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-dark font-bold px-6 py-3.5 rounded-full hover:border-[#9A7B4F] transition-colors shadow-sm text-sm active:scale-95">
-                 <Phone size={16} className="text-[#9A7B4F]" /> Call Now
+              <a href={`tel:${CAMPAIGN_CONFIG.phone}`} className="flex items-center justify-center gap-1.5 bg-white border border-gray-200 text-dark font-bold px-4 py-2.5 rounded-xl hover:border-[#9A7B4F] transition-colors shadow-xs text-xs sm:text-sm active:scale-95">
+                 <Phone size={14} className="text-[#9A7B4F]" /> Call Now
               </a>
               <button 
                 onClick={handleWhatsAppClick}
-                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-6 py-3.5 rounded-full transition-colors shadow-sm text-sm cursor-pointer active:scale-95"
+                className="flex items-center justify-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-4 py-2.5 rounded-xl transition-colors shadow-xs text-xs sm:text-sm cursor-pointer active:scale-95"
               >
-                 <MessageCircle size={16} /> WhatsApp
+                 <MessageCircle size={14} /> WhatsApp
               </button>
           </div>
 

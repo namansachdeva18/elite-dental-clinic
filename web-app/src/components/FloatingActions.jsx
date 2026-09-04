@@ -65,46 +65,74 @@ export default function FloatingActions() {
 
   return (
     <>
-      {/* Sticky WhatsApp Floating Action (Desktop & Mobile, only on main site to avoid collision with campaign sticky bar) */}
+      {/* Sticky WhatsApp Floating Action (Desktop only to prevent mobile screen clashing) */}
       {!isCampaignPage && (
         <button 
           onClick={handleWhatsAppClick}
-          className="fixed bottom-20 md:bottom-6 right-5 sm:right-6 z-[100] bg-[#25D366] text-white p-3.5 sm:p-4 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.4)] hover:bg-[#20BE5C] hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group cursor-pointer"
+          className="hidden md:flex fixed bottom-6 right-6 z-[100] bg-[#25D366] text-white p-4 rounded-full shadow-[0_8px_30px_rgb(37,211,102,0.4)] hover:bg-[#20BE5C] hover:scale-110 active:scale-95 transition-all duration-300 items-center justify-center group cursor-pointer"
           aria-label="Chat on WhatsApp with Elite Dental Clinic"
         >
-          <MessageCircle size={28} className="sm:w-8 sm:h-8" />
+          <MessageCircle size={28} />
           <span className="absolute right-full mr-3 bg-white text-dark text-xs sm:text-sm font-bold px-3 py-1.5 rounded-lg shadow-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-gray-100">
             Chat With Us
           </span>
         </button>
       )}
 
-      {/* Mobile Sticky Bottom Conversion Bar (Hidden on Campaign page since campaign page has its own dedicated sticky bar) */}
+      {/* Mobile Slim Sticky Bottom Conversion Bar with Google Maps, Call, WhatsApp, and Claim 20% */}
       {!isCampaignPage && (
-        <aside aria-label="Quick Actions" className="fixed bottom-0 left-0 w-full z-[90] bg-white/95 backdrop-blur-md border-t border-gray-200 p-2.5 sm:p-3 flex md:hidden shadow-[0_-4px_20px_rgba(0,0,0,0.08)] justify-between items-center gap-2.5">
+        <aside aria-label="Quick Actions" className="fixed bottom-0 left-0 w-full z-[90] bg-white/95 backdrop-blur-md border-t border-[#9A7B4F]/25 py-2 px-2.5 flex md:hidden shadow-[0_-8px_30px_rgba(0,0,0,0.12)] justify-between items-center gap-1.5">
+          {/* Call */}
           <a 
             href={`tel:${CAMPAIGN_CONFIG.phone}`} 
             onClick={handlePhoneClick}
-            className="flex-1 bg-gray-100 active:bg-gray-200 text-dark font-bold py-3 rounded-xl flex items-center justify-center gap-1.5 text-xs sm:text-sm transition-colors"
+            className="flex-1 bg-gray-100 active:bg-gray-200 text-dark font-bold py-2 px-1 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] transition-all border border-gray-200/80 active:scale-95"
+            aria-label="Call Clinic"
           >
-            <Phone size={16} /> Call
+            <Phone size={13} className="text-[#9A7B4F]" />
+            <span className="leading-tight font-semibold">Call</span>
           </a>
 
+          {/* Google Maps Directions */}
+          <a 
+            href="https://www.google.com/maps/search/?api=1&query=Elite+Dental+Clinic+Sirsa"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackConversionEvent('maps_click', { source: 'homepage_sticky_bar' })}
+            className="flex-1 bg-[#EEF4FE] text-[#1A73E8] font-bold py-2 px-1 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] transition-all border border-[#1A73E8]/25 active:scale-95"
+            aria-label="Directions on Google Maps"
+          >
+            <span className="text-[#EA4335] text-[13px] leading-none">📍</span>
+            <span className="leading-tight font-semibold text-[#1A73E8]">Maps</span>
+          </a>
+
+          {/* WhatsApp Direct */}
+          <button 
+            onClick={handleWhatsAppClick}
+            className="flex-[1.1] bg-[#25D366] text-white font-bold py-2 px-1 rounded-xl flex flex-col items-center justify-center gap-0.5 text-[10px] transition-all shadow-sm active:scale-95 cursor-pointer"
+            aria-label="WhatsApp Us"
+          >
+            <MessageCircle size={13} />
+            <span className="leading-tight font-semibold">WhatsApp</span>
+          </button>
+
+          {/* Claim 20% Offer with Liquid Shimmer */}
           {active ? (
             <Link 
               to="/anniversary-offer"
               onClick={() => trackConversionEvent('sticky_mobile_campaign_cta', { source: 'homepage_sticky_bottom' })}
-              className="flex-[2] bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold py-3 rounded-xl flex items-center justify-center gap-1.5 text-xs sm:text-sm shadow-md"
+              className="flex-[1.6] relative overflow-hidden bg-gradient-to-r from-[#9A7B4F] via-[#B89355] to-[#80633C] text-white font-bold py-2.5 px-2 rounded-xl flex items-center justify-center gap-1.5 text-xs shadow-md active:scale-95"
             >
-              <Sparkles size={15} />
-              <span>Claim 20% Offer</span>
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent skew-x-[-20deg] animate-shimmerSweep pointer-events-none" />
+              <Sparkles size={12} className="text-[#F3E5AB]" />
+              <span className="font-bold tracking-tight">Claim 20%</span>
             </Link>
           ) : (
             <a 
               href="#book"
-              className="flex-[2] bg-[#9A7B4F] text-white font-bold py-3 rounded-xl flex items-center justify-center text-xs sm:text-sm shadow-md"
+              className="flex-[1.6] bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold py-2.5 px-2 rounded-xl flex items-center justify-center text-xs shadow-md"
             >
-              Book Appointment
+              Book Visit
             </a>
           )}
         </aside>
