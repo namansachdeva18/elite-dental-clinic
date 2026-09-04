@@ -9,32 +9,32 @@ const REASONS = [
   {
     title: "Pain-Free Treatment",
     desc: "Advanced techniques ensuring your absolute comfort.",
-    icon: <Shield className="w-8 h-8 text-[#9A7B4F]" />
+    Icon: Shield
   },
   {
     title: "Latest Technology",
     desc: "Laser dentistry and digital scanners for precision.",
-    icon: <Zap className="w-8 h-8 text-[#9A7B4F]" />
+    Icon: Zap
   },
   {
     title: "Experienced Dentist",
-    desc: "Trusted by 1000+ patients in Sirsa.",
-    icon: <Award className="w-8 h-8 text-[#9A7B4F]" />
+    desc: "Trusted by thousands of happy patients in Sirsa.",
+    Icon: Award
   },
   {
     title: "Affordable Pricing",
     desc: "Consultation starting at just ₹200.",
-    icon: <Tag className="w-8 h-8 text-[#9A7B4F]" />
+    Icon: Tag
   },
   {
     title: "Hygiene & Safety",
     desc: "Strict 100% sterilization protocols.",
-    icon: <Sparkles className="w-8 h-8 text-[#9A7B4F]" />
+    Icon: Sparkles
   },
   {
     title: "Fast Service",
     desc: "Quick diagnosis and prompt care.",
-    icon: <Clock className="w-8 h-8 text-[#9A7B4F]" />
+    Icon: Clock
   }
 ];
 
@@ -43,17 +43,20 @@ export default function WhyChooseUs() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.reason-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-        },
-        y: 25,
-        opacity: 0,
-        duration: 0.5,
-        stagger: 0.08,
-        ease: 'power2.out',
-      });
+      gsap.fromTo('.reason-card', 
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.08,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 90%',
+          }
+        }
+      );
     }, containerRef);
     return () => ctx.revert();
   }, []);
@@ -75,27 +78,30 @@ export default function WhyChooseUs() {
 
         {/* Compact 2x3 Luxury Bento Matrix (Saves 60% scroll height) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {REASONS.map((reason, i) => (
-            <div 
-              key={i} 
-              className="reason-card bg-gradient-to-b from-[#1C1813] to-[#120E0A] text-white p-4 sm:p-5 rounded-2xl border border-[#9A7B4F]/25 hover:border-[#D4AF37] hover:shadow-[0_8px_25px_rgba(154,123,79,0.18)] hover:-translate-y-1 transition-all duration-300 flex items-start gap-3.5 group relative overflow-hidden"
-            >
-              {/* Gold Ambient Glow on Hover */}
-              <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#D4AF37]/10 rounded-full blur-xl pointer-events-none group-hover:bg-[#D4AF37]/20 transition-colors" />
+          {REASONS.map((reason, i) => {
+            const IconComponent = reason.Icon;
+            return (
+              <div 
+                key={i} 
+                className="reason-card bg-gradient-to-b from-[#1C1813] to-[#120E0A] text-white p-4 sm:p-5 rounded-2xl border border-[#9A7B4F]/25 hover:border-[#D4AF37] hover:shadow-[0_8px_25px_rgba(154,123,79,0.18)] hover:-translate-y-1 transition-all duration-300 flex items-start gap-3.5 group relative overflow-hidden opacity-100"
+              >
+                {/* Gold Ambient Glow on Hover */}
+                <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#D4AF37]/10 rounded-full blur-xl pointer-events-none group-hover:bg-[#D4AF37]/20 transition-colors" />
 
-              <div className="bg-[#2B2317] border border-[#9A7B4F]/40 p-2.5 rounded-xl shrink-0 group-hover:scale-110 transition-transform text-[#D4AF37]">
-                {React.cloneElement(reason.icon, { className: "w-5 h-5 text-[#D4AF37]" })}
+                <div className="bg-[#2B2317] border border-[#9A7B4F]/40 p-2.5 rounded-xl shrink-0 group-hover:scale-110 transition-transform text-[#D4AF37]">
+                  <IconComponent size={20} className="text-[#D4AF37]" />
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-sm sm:text-base text-white group-hover:text-[#EADBB6] transition-colors mb-0.5">
+                    {reason.title}
+                  </h4>
+                  <p className="font-sans text-gray-300 text-xs leading-relaxed">
+                    {reason.desc}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h4 className="font-display font-bold text-sm sm:text-base text-white group-hover:text-[#EADBB6] transition-colors mb-0.5">
-                  {reason.title}
-                </h4>
-                <p className="font-sans text-gray-300 text-xs leading-relaxed">
-                  {reason.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
