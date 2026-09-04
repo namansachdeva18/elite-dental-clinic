@@ -1,13 +1,18 @@
 import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import { Phone, MessageCircle, Star, Users, Award, CheckCircle2 } from 'lucide-react';
+import { Phone, MessageCircle, Star, Users, Award, CheckCircle2, Sparkles, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { CAMPAIGN_CONFIG, isCampaignActive, getCampaignWhatsAppUrl } from '../config/campaignConfig';
+import { trackConversionEvent } from '../utils/tracking';
 
 export default function Hero() {
   const containerRef = useRef(null);
   const leftRef = useRef(null);
   const rightRef = useRef(null);
+  const active = isCampaignActive();
 
-  useEffect(() => {    const ctx = gsap.context(() => {
+  useEffect(() => {
+    const ctx = gsap.context(() => {
       gsap.from(leftRef.current.children, { 
         opacity: 0, 
         y: 30, 
@@ -25,6 +30,14 @@ export default function Hero() {
     return () => ctx.revert();
   }, []);
 
+  const handleWhatsAppClick = () => {
+    trackConversionEvent('whatsapp_click', { source: 'homepage_hero' });
+    const waUrl = active 
+      ? getCampaignWhatsAppUrl('', '[Homepage Hero Inquiry]')
+      : `https://wa.me/${CAMPAIGN_CONFIG.whatsappNumber}?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <section ref={containerRef} className="relative w-full min-h-[90dvh] flex flex-col bg-white overflow-hidden pb-16 lg:pb-0">
 
@@ -34,6 +47,19 @@ export default function Hero() {
         {/* Left Column Text */}
         <div ref={leftRef} className="w-full lg:w-[55%] flex flex-col justify-center px-6 md:px-12 py-12 lg:py-0 z-20 bg-white/90 backdrop-blur-sm lg:backdrop-blur-none lg:bg-transparent">
           
+          {/* Campaign Teaser Badge on Homepage */}
+          {active && (
+            <Link 
+              to="/anniversary-offer"
+              onClick={() => trackConversionEvent('hero_anniversary_pill_click', { source: 'homepage_hero' })}
+              className="inline-flex items-center gap-2 bg-[#FAF8F5] border border-[#9A7B4F]/30 hover:border-[#9A7B4F] text-[#80633C] px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide mb-4 w-max transition-all shadow-sm group cursor-pointer"
+            >
+              <Sparkles size={13} className="text-[#9A7B4F]" />
+              <span>Anniversary Special: <strong>20% OFF</strong> Premium Treatments</span>
+              <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform text-[#9A7B4F]" />
+            </Link>
+          )}
+
           <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-dark mb-6 tracking-tight leading-[1.1]">
             Pain-Free Dental<br/>
             Care in Sirsa <br className="hidden lg:block"/>
@@ -56,17 +82,20 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Action Buttons precisely modeled on Screenshot 2 */}
+          {/* Action Buttons */}
           <div className="flex flex-wrap gap-3 mb-16">
               <a href="#book" className="flex items-center justify-center bg-[#A38A5F] text-white font-bold px-6 py-4 rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-[#A38A5F]/20 text-sm">
                  Book Consultation &rarr;
               </a>
-              <a href="tel:+919306299901" className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-dark font-bold px-6 py-4 rounded-full hover:border-[#A38A5F] transition-colors shadow-sm text-sm">
+              <a href={`tel:${CAMPAIGN_CONFIG.phone}`} className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-dark font-bold px-6 py-4 rounded-full hover:border-[#A38A5F] transition-colors shadow-sm text-sm">
                  <Phone size={16} /> Call Now
               </a>
-              <a href="https://wa.me/919306299901?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment" target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-6 py-4 rounded-full hover:bg-[#20bd5a] transition-colors shadow-sm text-sm">
+              <button 
+                onClick={handleWhatsAppClick}
+                className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-6 py-4 rounded-full hover:bg-[#20bd5a] transition-colors shadow-sm text-sm cursor-pointer"
+              >
                  <MessageCircle size={16} /> WhatsApp
-              </a>
+              </button>
           </div>
 
           {/* Bottom Floating Stats */}
@@ -75,7 +104,7 @@ export default function Hero() {
               <Star size={24} className="text-[#A38A5F] fill-[#A38A5F]" />
               <div className="flex flex-col">
                 <span className="font-bold text-dark text-sm">5.0 Rating</span>
-                <span className="text-xs text-muted uppercase font-bold tracking-wider">(80+ REVIEWS)</span>
+                <span className="text-xs text-muted uppercase font-bold tracking-wider">({CAMPAIGN_CONFIG.googleReviewCount} REVIEWS)</span>
               </div>
             </div>
             <div className="w-[1px] h-10 bg-gray-200"></div>

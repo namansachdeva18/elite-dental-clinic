@@ -1,10 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 @import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400,900&f[]=general-sans@200,300,400,500,600,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 html {
   scroll-behavior: smooth;
@@ -70,3 +70,63 @@ body::after {
   font-weight: 600;
   letter-spacing: 1px;
 }
+
+@keyframes progressAnim {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+@keyframes fadeInReview {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeInReview {
+  animation: fadeInReview 0.4s ease-out forwards;
+}
+
+.animate-progressLive {
+  animation: progressAnim 3.8s linear forwards;
+}
+
+/* Luxury Form Animations */
+@keyframes buttonShimmerSweep {
+  0% { transform: translateX(-150%) skewX(-20deg); }
+  100% { transform: translateX(250%) skewX(-20deg); }
+}
+
+.animate-shimmerSweep {
+  animation: buttonShimmerSweep 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes goldAuraGlow {
+  0%, 100% { opacity: 0.35; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.02); }
+}
+
+.animate-goldAura {
+  animation: goldAuraGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(37, 211, 102, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.animate-pulseRing {
+  animation: pulseRing 2.2s infinite;
+}
+
+@keyframes galleryProgressAnim {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+.animate-galleryProgress {
+  animation: galleryProgressAnim 4s linear forwards;
+}
+
+
+
+

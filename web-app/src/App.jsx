@@ -11,7 +11,10 @@ import FloatingActions from './components/FloatingActions';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import VideoPage from './components/VideoPage';
+import AnniversaryOffer from './pages/AnniversaryOffer';
+import AnniversaryThankYou from './pages/AnniversaryThankYou';
 import { REVIEWS } from './components/Testimonials';
+import { initAttributionTracking } from './utils/tracking';
 
 // A mock placeholder for the SEO pages
 function ServiceSEOPage({ title }) {
@@ -28,13 +31,56 @@ function ServiceSEOPage({ title }) {
   );
 }
 
-// Scroll restoration component
+// Scroll restoration component and UTM attribution initializer
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, search } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [pathname]);
+    initAttributionTracking();
+  }, [pathname, search]);
   return null;
+}
+
+// Layout Wrapper to conditionally show standard Navbar & Footer only on non-campaign routes
+function AppLayout() {
+  const { pathname } = useLocation();
+  const isDedicatedCampaign = pathname.startsWith('/anniversary-offer') || pathname.startsWith('/wedding-smile-offer');
+
+  return (
+    <>
+      <CustomCursor />
+      
+      {/* Global Top Banner */}
+      <TopBanner />
+
+      {/* Main website navigation (kept on organic routes, simplified on dedicated landing pages) */}
+      {!isDedicatedCampaign && <Navbar />}
+
+      {/* Floating Action Buttons */}
+      <FloatingActions />
+      
+      <main className="w-full min-h-screen bg-[#FDFBF7] selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          
+          {/* Dedicated Google Ads Campaign Routes */}
+          <Route path="/anniversary-offer" element={<AnniversaryOffer />} />
+          <Route path="/wedding-smile-offer" element={<AnniversaryOffer />} />
+          <Route path="/anniversary-offer/thank-you" element={<AnniversaryThankYou />} />
+          <Route path="/wedding-smile-offer/thank-you" element={<AnniversaryThankYou />} />
+
+          {/* SEO Service Pages */}
+          <Route path="/rct-treatment-sirsa" element={<ServiceSEOPage title="Root Canal Treatment in Sirsa" />} />
+          <Route path="/teeth-whitening-sirsa" element={<ServiceSEOPage title="Teeth Whitening in Sirsa" />} />
+          <Route path="/dental-implants-sirsa" element={<ServiceSEOPage title="Dental Implants in Sirsa" />} />
+          <Route path="/videos/prabhnoor-testimonial" element={<VideoPage />} />
+        </Routes>
+        
+        {/* Main Website Footer */}
+        {!isDedicatedCampaign && <Footer />}
+      </main>
+    </>
+  );
 }
 
 function App() {
@@ -128,25 +174,8 @@ function App() {
           {JSON.stringify(schemaData)}
         </script>
       </Helmet>
-      <CustomCursor />
       
-      {/* Global Elements */}
-      <TopBanner />
-      <Navbar />
-      <FloatingActions />
-      
-      <main className="w-full min-h-screen bg-[#FDFBF7] selection:bg-[#9A7B4F]/20 selection:text-[#9A7B4F]">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-          {/* SEO Service Pages */}
-          <Route path="/rct-treatment-sirsa" element={<ServiceSEOPage title="Root Canal Treatment in Sirsa" />} />
-          <Route path="/teeth-whitening-sirsa" element={<ServiceSEOPage title="Teeth Whitening in Sirsa" />} />
-          <Route path="/dental-implants-sirsa" element={<ServiceSEOPage title="Dental Implants in Sirsa" />} />
-          <Route path="/videos/prabhnoor-testimonial" element={<VideoPage />} />
-        </Routes>
-        <Footer />
-      </main>
+      <AppLayout />
     </BrowserRouter>
   );
 }
