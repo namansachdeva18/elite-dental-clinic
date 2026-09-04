@@ -63,59 +63,122 @@ const SERVICES = [
 ];
 
 export default function Services() {
+  const [activeCategory, setActiveCategory] = React.useState('ALL');
   const containerRef = useRef(null);
+
+  const categories = [
+    { id: 'ALL', label: 'All Services' },
+    { id: 'COSMETIC', label: 'Smile & Cosmetic' },
+    { id: 'RESTORATIVE', label: 'Implants & Restorative' },
+    { id: 'GENERAL', label: 'General & Preventive' }
+  ];
+
+  const categoryMap = {
+    'service-implants': 'RESTORATIVE',
+    'service-braces': 'COSMETIC',
+    'service-smile-design': 'COSMETIC',
+    'service-rct': 'RESTORATIVE',
+    'service-wisdom-tooth': 'RESTORATIVE',
+    'service-whitening': 'COSMETIC',
+    'service-crowns': 'RESTORATIVE',
+    'service-pediatric': 'GENERAL',
+    'service-emergency': 'GENERAL'
+  };
+
+  const filteredServices = activeCategory === 'ALL' 
+    ? SERVICES 
+    : SERVICES.filter(s => categoryMap[s.id] === activeCategory);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.from('.service-card', {
         scrollTrigger: {
           trigger: containerRef.current,
-          start: 'top 80%',
+          start: 'top 85%',
         },
-        y: 30,
-        duration: 0.6,
-        stagger: 0.1,
+        y: 25,
+        duration: 0.5,
+        stagger: 0.06,
         ease: 'power2.out',
       });
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [activeCategory]);
 
   return (
-    <section ref={containerRef} id="services" className="py-24 px-6 md:px-16 bg-[#FDFBF7]">
+    <section ref={containerRef} id="services" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-[#FDFBF7] border-b border-[#9A7B4F]/15">
       <div className="max-w-7xl mx-auto">
         <h2 className="sr-only">Our Dental Services in Sirsa</h2>
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Top Dental Clinic in Sirsa</h3>
-        <h3 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-16 tracking-tight">
-          Premium Services. <span className="text-[#9A7B4F]">Zero Pain.</span>
-        </h3>
+        
+        <div className="text-center max-w-xl mx-auto mb-6">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Top Dental Clinic in Sirsa
+          </span>
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-2">
+            Premium Services. <span className="text-[#9A7B4F]">Zero Pain.</span>
+          </h3>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            Explore advanced doctor-led treatments tailored for precision, comfort, and longevity.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {SERVICES.map((service, i) => (
-            <div key={i} id={service.id} className="service-card h-full w-full">
-              <div className="group bg-white p-6 md:p-8 rounded-2xl border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col justify-between h-full relative overflow-hidden m-0">
-                {/* Decorative border highlight */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gray-100 group-hover:bg-[#9A7B4F] transition-colors" />
+        {/* Compact Interactive Filter Pills */}
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                activeCategory === cat.id
+                  ? 'bg-[#2B2317] text-[#EADBB6] shadow-md border border-[#D4AF37]/40 scale-105'
+                  : 'bg-white text-gray-600 hover:text-dark border border-gray-200 hover:border-[#9A7B4F]/40'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-                <div className="flex flex-col flex-grow items-start justify-start w-full">
-                  <div className="h-14 flex items-start justify-start w-full m-0 p-0">
-                     <span className="block">{service.icon}</span>
-                     <span className="sr-only" aria-label={`Icon representing ${service.title}`}></span>
+        {/* High-Density Compact Services Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 items-stretch">
+          {filteredServices.map((service, i) => (
+            <div key={service.id} id={service.id} className="service-card h-full w-full">
+              <div className="group bg-white p-5 sm:p-6 rounded-2xl border border-[#9A7B4F]/20 shadow-xs hover:border-[#D4AF37] hover:shadow-[0_8px_25px_rgba(154,123,79,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden">
+                
+                {/* Decorative golden accent top bar */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gray-100 group-hover:bg-gradient-to-r group-hover:from-[#9A7B4F] group-hover:to-[#D4AF37] transition-all" />
+
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#9A7B4F]/20 flex items-center justify-center text-[#9A7B4F] group-hover:scale-110 group-hover:text-[#80633C] transition-all">
+                      {React.cloneElement(service.icon, { className: "w-5 h-5 mb-0" })}
+                    </div>
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#9A7B4F] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#9A7B4F]/15">
+                      Verified Care
+                    </span>
                   </div>
                   
-                  <h3 className="font-sans font-bold text-xl text-dark mb-3 mt-0 leading-tight w-full">{service.title}</h3>
-                  <p className="font-sans text-muted text-sm font-medium leading-relaxed m-0 w-full">{service.description}</p>
+                  <h3 className="font-display font-bold text-base sm:text-lg text-dark mb-1.5 leading-snug group-hover:text-[#80633C] transition-colors">
+                    {service.title}
+                  </h3>
+                  
+                  <p className="font-sans text-muted text-xs leading-relaxed">
+                    {service.description}
+                  </p>
                 </div>
                 
-                <div className="mt-8 flex-shrink-0 w-full">
-                  <a href="#book" className="inline-flex items-center text-sm font-bold text-[#9A7B4F] group-hover:text-dark transition-colors">
-                    Learn More &rarr;
+                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+                  <a href="#book" className="inline-flex items-center gap-1 text-xs font-bold text-[#9A7B4F] group-hover:text-dark transition-colors">
+                    <span>Consult Doctor</span>
+                    <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </a>
+                  <span className="text-[10px] text-gray-400 font-mono">Sirsa Clinic</span>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

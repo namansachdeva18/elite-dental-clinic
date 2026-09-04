@@ -28,27 +28,34 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="faq" className="py-24 px-6 md:px-16 bg-white">
+    <section id="faq" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#9A7B4F]/15">
       <div className="max-w-4xl mx-auto">
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Questions?</h3>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-16 tracking-tight">
-          Frequently Asked.
-        </h2>
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Patient Questions
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+            Frequently <span className="text-[#9A7B4F]">Asked</span>
+          </h2>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            Everything you need to know about visits, consultation costs, and pain-free procedures.
+          </p>
+        </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           {FAQS.map((faq, i) => (
             <div 
               key={i} 
-              className={`border border-gray-200 rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === i ? 'shadow-md border-[#9A7B4F]/30 bg-[#FDFBF7]' : 'hover:border-[#9A7B4F]/20 hover:bg-gray-50'}`}
+              className={`border border-[#9A7B4F]/20 rounded-2xl overflow-hidden transition-all duration-300 ${openIndex === i ? 'shadow-md border-[#D4AF37] bg-[#FAF8F5]' : 'hover:border-[#9A7B4F]/40 bg-white'}`}
             >
               <button 
                 onClick={() => setOpenIndex(i === openIndex ? -1 : i)}
-                className="w-full px-6 md:px-8 py-5 md:py-6 flex items-center justify-between text-left"
+                className="w-full px-5 sm:px-6 py-4 flex items-center justify-between text-left cursor-pointer"
               >
-                <span className="font-bold text-lg text-dark pr-8">{faq.q}</span>
+                <span className="font-display font-bold text-sm sm:text-base text-dark pr-4">{faq.q}</span>
                 <ChevronDown 
-                  size={24} 
-                  className={`text-[#9A7B4F] flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180' : ''}`} 
+                  size={18} 
+                  className={`text-[#9A7B4F] flex-shrink-0 transition-transform duration-300 ${openIndex === i ? 'rotate-180 text-[#80633C]' : ''}`} 
                 />
               </button>
               

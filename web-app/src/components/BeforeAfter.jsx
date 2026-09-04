@@ -57,19 +57,26 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section ref={containerRef} id="results" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10">
-      <div className="max-w-6xl mx-auto flex flex-col items-center ba-element">
+    <section ref={containerRef} id="results" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-[#FAF8F5] border-b border-[#9A7B4F]/15">
+      <div className="max-w-5xl mx-auto flex flex-col items-center ba-element">
 
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Real Transformations</h3>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-16 tracking-tight">
-          Results that <span className="text-[#9A7B4F]">Speak for Themselves.</span>
-        </h2>
+        <div className="text-center max-w-xl mx-auto mb-6">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Real Transformations
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+            Results That <span className="text-[#9A7B4F]">Speak For Themselves</span>
+          </h2>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            Real clinical smile restorations performed at Elite Dental Clinic Sirsa.
+          </p>
+        </div>
 
-        <div className="bg-white rounded-[2rem] shadow-xl border border-gray-100 p-6 md:p-10 w-full max-w-5xl ba-element">
-          <div className="flex flex-col md:flex-row gap-8 items-center">
+        <div className="bg-white rounded-2xl shadow-md border border-gray-200/80 p-4 sm:p-7 w-full ba-element">
+          <div className="flex flex-col sm:flex-row gap-4 items-center">
 
             {/* Before Img Block */}
-            <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden group bg-gray-100 h-64 md:h-80 flex items-center justify-center">
+            <div className="w-full sm:w-1/2 relative rounded-xl overflow-hidden group bg-gray-100 h-56 sm:h-72 flex items-center justify-center shadow-inner">
               <img
                 src={TRANSFORMATIONS[currentIndex].imgBefore}
                 alt="Before treatment in Sirsa clinic"
@@ -78,13 +85,13 @@ export default function BeforeAfter() {
                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/fallback.webp'; }}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-4 left-4 bg-dark/80 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-bold tracking-wide z-10 shadow-sm">
+              <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold tracking-wider z-10 shadow-xs">
                 BEFORE
               </div>
             </div>
 
             {/* After Img Block */}
-            <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden group bg-gray-100 h-64 md:h-80 flex items-center justify-center">
+            <div className="w-full sm:w-1/2 relative rounded-xl overflow-hidden group bg-gray-100 h-56 sm:h-72 flex items-center justify-center shadow-inner">
               <img
                 src={TRANSFORMATIONS[currentIndex].imgAfter}
                 alt="After treatment in Sirsa clinic"
@@ -93,36 +100,37 @@ export default function BeforeAfter() {
                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/fallback.webp'; }}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute top-4 right-4 bg-[#9A7B4F]/90 backdrop-blur-md text-white px-4 py-1.5 rounded-full text-sm font-bold tracking-wide z-10 shadow-sm">
-                AFTER
+              <div className="absolute top-3 right-3 bg-[#9A7B4F] backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-bold tracking-wider z-10 shadow-xs">
+                AFTER (TRANSFORMED)
               </div>
             </div>
 
           </div>
 
-          <div className="mt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="text-center md:text-left max-w-lg">
-              <h4 className="font-display font-bold text-2xl text-dark mb-2">{TRANSFORMATIONS[currentIndex].category}</h4>
-              <p className="font-sans text-muted">{TRANSFORMATIONS[currentIndex].desc}</p>
+          <div className="mt-6 pt-4 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="text-center sm:text-left max-w-lg">
+              <span className="text-[10px] font-mono text-[#9A7B4F] font-bold uppercase">Case Category</span>
+              <h4 className="font-display font-bold text-lg sm:text-xl text-dark mb-0.5">{TRANSFORMATIONS[currentIndex].category}</h4>
+              <p className="font-sans text-muted text-xs sm:text-sm leading-relaxed">{TRANSFORMATIONS[currentIndex].desc}</p>
             </div>
 
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2">
               <button
                 onClick={slidePrev}
-                className="bg-gray-100 p-3 rounded-full hover:bg-[#9A7B4F] hover:text-white transition-colors"
-                aria-label="Previous slide"
+                className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#9A7B4F] hover:text-white transition-colors cursor-pointer active:scale-90"
+                aria-label="Previous transformation"
               >
-                <ChevronLeft size={24} />
+                <ChevronLeft size={18} />
               </button>
-              <div className="font-mono font-bold text-dark w-12 text-center">
+              <div className="font-mono text-xs font-bold text-dark px-2 text-center min-w-[40px]">
                 {currentIndex + 1} / {TRANSFORMATIONS.length}
               </div>
               <button
                 onClick={slideNext}
-                className="bg-gray-100 p-3 rounded-full hover:bg-[#9A7B4F] hover:text-white transition-colors"
-                aria-label="Next slide"
+                className="w-9 h-9 bg-gray-100 rounded-full flex items-center justify-center hover:bg-[#9A7B4F] hover:text-white transition-colors cursor-pointer active:scale-90"
+                aria-label="Next transformation"
               >
-                <ChevronRight size={24} />
+                <ChevronRight size={18} />
               </button>
             </div>
           </div>

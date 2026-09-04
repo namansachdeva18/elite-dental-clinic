@@ -112,22 +112,27 @@ export default function Testimonials() {
   };
 
   return (
-    <section ref={sectionRef} id="reviews" className="py-24 px-6 md:px-16 bg-[#FDFBF7] border-y border-[#9A7B4F]/10 relative overflow-hidden">
+    <section ref={sectionRef} id="reviews" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#9A7B4F]/15 relative overflow-hidden">
       
       {/* Search Engine Optimization */}
       <h2 className="sr-only">Real Patient Reviews – Best Dental Clinic in Sirsa</h2>
 
       <div className="max-w-7xl mx-auto flex flex-col items-center">
         
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 test-element">
-          Verified Reviews
-        </h3>
-        <h3 className="font-display text-4xl md:text-5xl font-bold text-dark mb-16 tracking-tight text-center test-element">
-          Real Patient Experiences
-        </h3>
+        <div className="text-center max-w-xl mx-auto mb-8 test-element">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Verified Google Reviews
+          </span>
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+            Real Patient <span className="text-[#9A7B4F]">Experiences</span>
+          </h3>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            5.0 Rating from 80+ real patients for hygiene, gentle care, and zero discomfort.
+          </p>
+        </div>
 
         {/* --- Slider Component --- */}
-        <div className="w-full relative test-element mb-24">
+        <div className="w-full relative test-element mb-12">
           
           {/* Controls */}
           <button 

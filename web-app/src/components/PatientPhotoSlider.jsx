@@ -45,13 +45,16 @@ export default function PatientPhotoSlider() {
   };
 
   return (
-    <section id="patient-gallery" className="py-12 md:py-16 mt-10 md:mt-14 bg-white relative z-20 overflow-hidden">
-      <div className="max-w-[1300px] mx-auto px-5 mb-8 text-center flex flex-col items-center">
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-dark tracking-tight mb-3">
-          Patient Gallery
+    <section id="patient-gallery" className="py-10 md:py-14 bg-[#FCFAF7] relative z-20 overflow-hidden border-b border-[#9A7B4F]/15">
+      <div className="max-w-5xl mx-auto px-4 mb-6 text-center flex flex-col items-center">
+        <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+          Verified Smile Transformations
+        </span>
+        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+          Patient <span className="text-[#9A7B4F]">Smiles Gallery</span>
         </h2>
-        <p className="text-muted font-sans text-lg max-w-2xl mx-auto">
-          Real smiles transformed at our clinic.
+        <p className="text-muted font-sans text-xs sm:text-sm max-w-xl mx-auto">
+          Actual smiling patients who received gentle, pain-free dental care at our clinic.
         </p>
       </div>
 

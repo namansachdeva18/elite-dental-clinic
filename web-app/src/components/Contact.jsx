@@ -29,12 +29,19 @@ export default function Contact() {
   const mapLink = "https://www.google.com/maps/search/?api=1&query=Elite+Dental+Clinic+Sirsa";
 
   return (
-    <section ref={containerRef} id="contact" className="py-24 px-6 md:px-16 bg-white border-t border-gray-100">
+    <section ref={containerRef} id="contact" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#9A7B4F]/15">
       <div className="max-w-6xl mx-auto">
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Get in Touch</h3>
-        <h2 className="font-display text-4xl font-bold text-dark text-center mb-16 tracking-tight">
-          Visit <span className="text-[#9A7B4F]">Elite Dental Clinic</span>
-        </h2>
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Get in Touch
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+            Visit <span className="text-[#9A7B4F]">Elite Dental Clinic</span>
+          </h2>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            Conveniently located on Dabwali Road, Sirsa with dedicated consultation and treatment suites.
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           

@@ -38,7 +38,7 @@ export default function HowItWorks() {
           ease: 'none',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 60%',
+            start: 'top 70%',
             end: 'bottom 80%',
             scrub: 1,
           }
@@ -46,14 +46,14 @@ export default function HowItWorks() {
       }
 
       gsap.from('.process-step', {
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
+        duration: 0.6,
+        stagger: 0.15,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: 'top 65%',
+          start: 'top 75%',
         }
       });
     }, sectionRef);
@@ -62,12 +62,19 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="py-24 px-6 md:px-16 bg-[#FDFBF7] overflow-hidden relative">
-      <div className="max-w-7xl mx-auto">
-        <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4 text-center">Seamless Process</h3>
-        <h2 className="font-display text-4xl md:text-5xl font-bold text-dark text-center mb-24 tracking-tight">
-          How We Restore Your Smile.
-        </h2>
+    <section ref={sectionRef} id="how-it-works" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden relative border-b border-[#9A7B4F]/15">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center max-w-xl mx-auto mb-10">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+            Transparent Care Process
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+            How Your Treatment <span className="text-[#9A7B4F]">Works</span>
+          </h2>
+          <p className="font-sans text-muted text-xs sm:text-sm">
+            A simple, predictable 3-step pathway from your first consultation to a pain-free, healthy smile.
+          </p>
+        </div>
 
         <div className="relative flex flex-col md:flex-row justify-between gap-12 md:gap-8 max-w-5xl mx-auto">
           {/* Connecting Line (Desktop) */}

@@ -83,44 +83,44 @@ export default function Hero() {
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-3 mb-16">
-              <a href="#book" className="flex items-center justify-center bg-[#A38A5F] text-white font-bold px-6 py-4 rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-[#A38A5F]/20 text-sm">
+          <div className="flex flex-wrap gap-3 mb-8">
+              <a href="#book" className="flex items-center justify-center bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold px-6 py-3.5 rounded-full hover:brightness-110 transition-all shadow-lg shadow-[#9A7B4F]/25 text-sm active:scale-95">
                  Book Consultation &rarr;
               </a>
-              <a href={`tel:${CAMPAIGN_CONFIG.phone}`} className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-dark font-bold px-6 py-4 rounded-full hover:border-[#A38A5F] transition-colors shadow-sm text-sm">
-                 <Phone size={16} /> Call Now
+              <a href={`tel:${CAMPAIGN_CONFIG.phone}`} className="flex items-center justify-center gap-2 bg-white border border-gray-200 text-dark font-bold px-6 py-3.5 rounded-full hover:border-[#9A7B4F] transition-colors shadow-sm text-sm active:scale-95">
+                 <Phone size={16} className="text-[#9A7B4F]" /> Call Now
               </a>
               <button 
                 onClick={handleWhatsAppClick}
-                className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-6 py-4 rounded-full hover:bg-[#20bd5a] transition-colors shadow-sm text-sm cursor-pointer"
+                className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold px-6 py-3.5 rounded-full transition-colors shadow-sm text-sm cursor-pointer active:scale-95"
               >
                  <MessageCircle size={16} /> WhatsApp
               </button>
           </div>
 
-          {/* Bottom Floating Stats */}
-          <div className="flex items-center gap-6 md:gap-12 bg-white shadow-xl shadow-gray-200/50 rounded-2xl px-8 py-5 border border-gray-50 w-max">
-            <div className="flex items-center gap-3">
-              <Star size={24} className="text-[#A38A5F] fill-[#A38A5F]" />
+          {/* Bottom Floating Stats - Compact & Luxury */}
+          <div className="flex items-center gap-4 sm:gap-8 bg-white/95 backdrop-blur-md shadow-xl shadow-black/5 rounded-2xl px-5 sm:px-8 py-3.5 border border-[#9A7B4F]/20 w-max max-w-full overflow-x-auto">
+            <div className="flex items-center gap-2.5">
+              <Star size={20} className="text-[#9A7B4F] fill-[#9A7B4F]" />
               <div className="flex flex-col">
-                <span className="font-bold text-dark text-sm">5.0 Rating</span>
-                <span className="text-xs text-muted uppercase font-bold tracking-wider">({CAMPAIGN_CONFIG.googleReviewCount} REVIEWS)</span>
+                <span className="font-bold text-dark text-xs sm:text-sm">5.0 Rating</span>
+                <span className="text-[10px] text-muted uppercase font-bold tracking-wider">({CAMPAIGN_CONFIG.googleReviewCount} REVIEWS)</span>
               </div>
             </div>
-            <div className="w-[1px] h-10 bg-gray-200"></div>
-            <div className="flex items-center gap-3">
-              <Award size={24} className="text-[#A38A5F]" />
+            <div className="w-[1px] h-8 bg-gray-200"></div>
+            <div className="flex items-center gap-2.5">
+              <Award size={20} className="text-[#9A7B4F]" />
               <div className="flex flex-col">
-                <span className="font-bold text-dark text-sm">1000+ Successful </span>
-                <span className="text-xs text-muted uppercase font-bold tracking-wider">Treatments</span>
+                <span className="font-bold text-dark text-xs sm:text-sm">Thousands</span>
+                <span className="text-[10px] text-muted uppercase font-bold tracking-wider">TREATMENTS</span>
               </div>
             </div>
-            <div className="w-[1px] h-10 bg-gray-200"></div>
-            <div className="flex items-center gap-3">
-              <Users size={24} className="text-[#A38A5F]" />
+            <div className="w-[1px] h-8 bg-gray-200"></div>
+            <div className="flex items-center gap-2.5">
+              <Users size={20} className="text-[#9A7B4F]" />
               <div className="flex flex-col">
-                <span className="font-bold text-dark text-sm">1000+ Happy</span>
-                <span className="text-xs text-muted uppercase font-bold tracking-wider">PATIENTS</span>
+                <span className="font-bold text-dark text-xs sm:text-sm">Thousands</span>
+                <span className="text-[10px] text-muted uppercase font-bold tracking-wider">HAPPY PATIENTS</span>
               </div>
             </div>
           </div>

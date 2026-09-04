@@ -26,26 +26,26 @@ export default function DoctorProfile() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 px-6 md:px-16 bg-white overflow-hidden border-t border-gray-100">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20">
+    <section ref={sectionRef} id="about" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden border-b border-[#9A7B4F]/15">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-14">
 
         {/* Doctor Image */}
         <div className="w-full md:w-5/12 flex justify-center doc-element">
-          <div className="relative w-80 h-[28rem] md:w-full md:h-[36rem] rounded-3xl overflow-hidden shadow-2xl border-2 border-gray-100">
+          <div className="relative w-72 h-[24rem] md:w-full md:h-[30rem] rounded-3xl overflow-hidden shadow-xl border-2 border-[#9A7B4F]/20 group">
             <img
               src="/images/doctor.webp"
-              alt="Gentle & Family-Friendly Dental Care in Sirsa"
+              alt="Gentle & Family-Friendly Dental Care in Sirsa by Dr. Nandini Bansal"
               loading="lazy"
               decoding="async"
               onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/fallback.webp'; }}
-              className="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-700"
+              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
             {/* Experience overlay */}
-            <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-gray-100">
+            <div className="absolute bottom-4 left-4 right-4 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-[#9A7B4F]/20">
               <div className="flex justify-between items-center w-full">
                 <div className="w-full">
-                  <h4 className="font-bold text-xl text-dark mb-1">Dr. Nandini Bansal</h4>
-                  <p className="text-sm text-muted font-medium">BDS, Root Canal Specialist</p>
+                  <h4 className="font-display font-bold text-lg text-dark mb-0.5">Dr. Nandini Bansal</h4>
+                  <p className="text-xs text-muted font-medium">BDS, Root Canal & Laser Specialist</p>
                 </div>
               </div>
             </div>
@@ -54,33 +54,35 @@ export default function DoctorProfile() {
 
         {/* Doctor Info */}
         <div className="w-full md:w-7/12 flex flex-col items-center md:items-start text-center md:text-left doc-element">
-          <h3 className="font-mono text-sm tracking-widest text-[#9A7B4F] uppercase mb-4">Gentle & Family-Friendly Dental Care</h3>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-dark tracking-tight mb-8 leading-tight">
+          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold mb-2">
+            Gentle & Family-Friendly Dental Care
+          </span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mb-4 leading-tight">
             "I understand dental fear. My sole goal is your <span className="text-[#9A7B4F]">pain-free treatment.</span>"
           </h2>
 
-          <div className="font-sans text-muted text-lg leading-relaxed mb-6 space-y-4">
+          <div className="font-sans text-muted text-xs sm:text-sm leading-relaxed mb-6 space-y-3">
             <p>
-              Many patients arrive at our clinic terrified of the dentist chair. I get it. That's exactly why Elite Dental Clinic was built around one core philosophy: absolute zero discomfort.
+              Many patients arrive at our clinic terrified of the dentist chair. That is why Elite Dental Clinic was built around one core philosophy: absolute zero discomfort.
             </p>
             <p>
-              Using the latest laser technology and a highly gentle approach, my team and I ensure that every procedure—from basic scaling , root canals to complex implant placements—is done securely and beautifully, without the stress.
+              Using gentle laser technology and precision digital equipment, my team and I ensure that every procedure—from basic scaling and single-visit root canals to aesthetic smile makeovers—is completed securely and comfortably.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-4 mb-10">
-            <div className="flex items-center gap-3 bg-graybg p-4 rounded-xl border border-gray-100">
-              <Award className="text-[#9A7B4F]" size={24} />
-              <div className="text-sm font-bold text-dark">BDS, Root Canal Specialist</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full mb-6">
+            <div className="flex items-center gap-3 bg-[#FAF8F5] p-3.5 rounded-xl border border-[#9A7B4F]/20">
+              <Award className="text-[#9A7B4F] shrink-0" size={20} />
+              <div className="text-xs font-bold text-dark">BDS, Root Canal Specialist</div>
             </div>
-            <div className="flex items-center gap-3 bg-graybg p-4 rounded-xl border border-gray-100">
-              <ShieldCheck className="text-[#9A7B4F]" size={24} />
-              <div className="text-sm font-bold text-dark">Advanced Laser Specialist</div>
+            <div className="flex items-center gap-3 bg-[#FAF8F5] p-3.5 rounded-xl border border-[#9A7B4F]/20">
+              <ShieldCheck className="text-[#9A7B4F] shrink-0" size={20} />
+              <div className="text-xs font-bold text-dark">Advanced Laser Care Specialist</div>
             </div>
           </div>
 
-          <a href="#book" className="flex items-center justify-center gap-2 bg-[#9A7B4F] text-white font-bold py-4 px-10 rounded-full hover:bg-dark transition-colors shadow-lg active:scale-95 duration-200">
-            <Heart size={18} /> Book a Gentle Consultation
+          <a href="#book" className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#9A7B4F] to-[#80633C] text-white font-bold py-3.5 px-8 rounded-full hover:brightness-110 transition-all shadow-md text-xs sm:text-sm active:scale-95">
+            <Heart size={16} /> Book a Gentle Consultation
           </a>
         </div>
 
