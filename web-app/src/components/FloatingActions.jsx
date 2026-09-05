@@ -21,41 +21,31 @@ export default function FloatingActions() {
     return () => window.removeEventListener('open-campaign-modal-internal', handleOpen);
   }, []);
 
-  // Smart Popup / Exit Intent trigger for organic visitors
+  // Calibrated Lead Generation Trigger:
+  // Automatically pops up the 20% Offer booking form on page load / reload after a brief smooth delay (1.2s)
+  // Ensures maximum lead capture while allowing the luxury hero aesthetics to paint smoothly first.
   useEffect(() => {
-    // Only fire popup if not already dismissed in this session
-    const hasSeenPopup = sessionStorage.getItem('elite_popup_seen');
-    if (hasSeenPopup) return;
+    // Don't auto-pop if on thank-you confirmation page
+    if (location.pathname.includes('/thank-you')) return;
 
-    // 1. Desktop Exit Intent (cursor moving to top)
+    const autoOpenTimer = setTimeout(() => {
+      setCampaignModalOpen(true);
+    }, 1200);
+
+    // Desktop Exit-Intent trigger (cursor moving toward browser top bar)
     const handleMouseLeave = (e) => {
-      if (e.clientY <= 0 && !exitIntentDismissed && !sessionStorage.getItem('elite_popup_seen')) {
+      if (e.clientY <= 0 && !exitIntentDismissed) {
         setExitIntentDismissed(true);
-        sessionStorage.setItem('elite_popup_seen', 'true');
-        if (active) {
-          setCampaignModalOpen(true);
-        } else {
-          window.dispatchEvent(new Event('open-booking-modal'));
-        }
+        setCampaignModalOpen(true);
       }
     };
-
-    // 2. Engagement Delay Trigger (after 35 seconds of meaningful browsing)
-    const timer = setTimeout(() => {
-      if (!sessionStorage.getItem('elite_popup_seen')) {
-        sessionStorage.setItem('elite_popup_seen', 'true');
-        if (active && !isCampaignPage) {
-          setCampaignModalOpen(true);
-        }
-      }
-    }, 35000);
 
     document.addEventListener('mouseleave', handleMouseLeave);
     return () => {
+      clearTimeout(autoOpenTimer);
       document.removeEventListener('mouseleave', handleMouseLeave);
-      clearTimeout(timer);
     };
-  }, [exitIntentDismissed, active, isCampaignPage]);
+  }, [exitIntentDismissed, location.pathname]);
 
   // Handle WhatsApp Click
   const handleWhatsAppClick = () => {
