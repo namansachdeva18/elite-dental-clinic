@@ -1,13 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Phone, MessageCircle } from 'lucide-react';
 import { trackPhoneCall, trackWhatsAppClick } from '../utils/tracking';
+import doctorPhoto from '/images/doctor.webp?url';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DoctorProfile() {
   const sectionRef = useRef(null);
+  const [imgSrc, setImgSrc] = useState(doctorPhoto || '/images/doctor.webp');
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -55,11 +57,18 @@ export default function DoctorProfile() {
                 {/* Doctor Photo inside tooth frame */}
                 <div className="relative w-36 h-42 sm:w-42 sm:h-48 rounded-[40%_40%_45%_45%/48%_48%_38%_38%] overflow-hidden shadow-lg border-[2.5px] border-white group/photo">
                   <img
-                    src="/images/doctor.webp"
+                    src={imgSrc}
                     alt="Dr. Nandini Bansal - Chief Dental Surgeon"
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/fallback.webp'; }}
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                    onError={() => {
+                      if (imgSrc !== '/images/doctor.webp') {
+                        setImgSrc('/images/doctor.webp');
+                      } else {
+                        setImgSrc('/images/hero-doctor.webp');
+                      }
+                    }}
                     className="w-full h-full object-cover object-top group-hover/photo:scale-108 transition-transform duration-700 ease-out"
                   />
 
