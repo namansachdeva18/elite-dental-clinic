@@ -29,96 +29,106 @@ export default function Contact() {
   const mapLink = "https://www.google.com/maps/search/?api=1&query=Elite+Dental+Clinic+Sirsa";
 
   return (
-    <section ref={containerRef} id="contact" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#9A7B4F]/15">
+    <section ref={containerRef} id="contact" className="py-8 md:py-10 px-4 sm:px-6 lg:px-12 bg-white border-b border-[#9A7B4F]/15">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center max-w-xl mx-auto mb-8">
-          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+        <div className="text-center max-w-xl mx-auto mb-5">
+          <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
             Get in Touch
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-dark tracking-tight mt-0.5 mb-1">
             Visit <span className="text-[#9A7B4F]">Elite Dental Clinic</span>
           </h2>
-          <p className="font-sans text-muted text-xs sm:text-sm">
+          <p className="font-sans text-muted text-[11px] sm:text-xs">
             Conveniently located on Dabwali Road, Sirsa with dedicated consultation and treatment suites.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Contact Info */}
-          <div className="flex flex-col gap-6 contact-element">
+          {/* Left Column: Compact Contact Info Cards */}
+          <div className="flex flex-col gap-3 contact-element">
             
-            <div className="flex gap-4">
-              <a href="tel:+919306299901" className="flex-1 flex items-center justify-center gap-2 bg-dark text-white font-bold py-4 rounded-xl hover:bg-black transition-colors shadow-sm">
-                <Phone size={18} /> Call Clinic
+            {/* Quick Action Buttons */}
+            <div className="grid grid-cols-2 gap-2.5">
+              <a 
+                href="tel:+919467624898" 
+                className="flex items-center justify-center gap-1.5 bg-[#1C1813] text-white font-bold py-2 px-3 rounded-xl hover:bg-black transition-all shadow-xs text-xs active:scale-95 border border-[#9A7B4F]/30"
+              >
+                <Phone size={13} className="text-[#D4AF37]" /> Call Clinic
               </a>
-              <a href="https://wa.me/919306299901?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment" target="_blank" rel="noreferrer" className="flex-1 flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold py-4 rounded-xl hover:bg-[#20bd5a] transition-colors shadow-sm">
-                <MessageCircle size={18} /> WhatsApp
+              <a 
+                href="https://wa.me/919467624898?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment" 
+                target="_blank" 
+                rel="noreferrer" 
+                className="flex items-center justify-center gap-1.5 bg-[#25D366] text-white font-bold py-2 px-3 rounded-xl hover:bg-[#20bd5a] transition-all shadow-xs text-xs active:scale-95"
+              >
+                <MessageCircle size={14} /> WhatsApp
               </a>
             </div>
 
-            <div className="mt-4 flex flex-col gap-8">
-              
-              {/* Clickable Address */}
-              <a href={mapLink} target="_blank" rel="noreferrer" className="group flex items-start gap-5">
-                <div className="bg-[#9A7B4F]/10 p-4 rounded-xl shrink-0 group-hover:bg-[#9A7B4F] group-hover:text-white transition-colors text-[#9A7B4F]">
-                  <MapPin size={24} />
+            {/* Compact Address Card */}
+            <a 
+              href={mapLink} 
+              target="_blank" 
+              rel="noreferrer" 
+              className="group flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 bg-[#FAF8F5] hover:border-[#9A7B4F]/50 hover:bg-white transition-all shadow-2xs"
+            >
+              <div className="w-8 h-8 rounded-xl bg-white border border-[#9A7B4F]/25 text-[#9A7B4F] flex items-center justify-center shrink-0 group-hover:bg-[#9A7B4F] group-hover:text-white transition-colors shadow-2xs">
+                <MapPin size={16} />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2">
+                  <h4 className="font-sans font-bold text-dark text-xs sm:text-sm group-hover:text-[#9A7B4F] transition-colors">
+                    Clinic Address
+                  </h4>
+                  <span className="text-[9.5px] font-semibold text-[#9A7B4F] group-hover:translate-x-0.5 transition-transform">
+                    Directions &rarr;
+                  </span>
                 </div>
-                <div className="flex flex-col mt-1">
-                  <h4 className="font-sans font-bold text-dark text-lg mb-1 group-hover:text-[#9A7B4F] transition-colors">Clinic Address</h4>
-                  <p className="font-sans text-muted leading-relaxed text-sm">Near Dr. Lal Path Lab, Opposite City Diagnostic Centre, Dabwali Road, Sirsa – 125055 (Haryana)</p>
-                </div>
-              </a>
+                <p className="font-sans text-muted text-[11px] sm:text-xs leading-relaxed mt-0.5">
+                  Near Dr. Lal Path Lab, Opp. City Diagnostic Centre, Dabwali Road, Sirsa (125055)
+                </p>
+              </div>
+            </a>
 
-              {/* Working Hours */}
-              <div className="flex items-start gap-5">
-                <div className="bg-[#9A7B4F]/10 p-4 rounded-xl shrink-0 text-[#9A7B4F]">
-                  <Clock size={24} />
+            {/* Compact Working Hours Card */}
+            <div className="flex items-start gap-3 p-3 rounded-2xl border border-gray-200/80 bg-[#FAF8F5] shadow-2xs">
+              <div className="w-8 h-8 rounded-xl bg-white border border-[#9A7B4F]/25 text-[#9A7B4F] flex items-center justify-center shrink-0 shadow-2xs">
+                <Clock size={16} />
+              </div>
+              <div className="flex flex-col flex-1 text-[11px] sm:text-xs">
+                <h4 className="font-sans font-bold text-dark mb-1">
+                  Working Hours
+                </h4>
+                <div className="grid grid-cols-2 gap-1 text-muted">
+                  <div>
+                    <span className="font-semibold text-dark block text-[10.5px]">Mon – Sat</span>
+                    <span>10:00 am – 7:30 pm</span>
+                  </div>
+                  <div>
+                    <span className="font-semibold text-dark block text-[10.5px]">Sunday</span>
+                    <span>10:00 am – 2:30 pm</span>
+                  </div>
                 </div>
-                <div className="flex flex-col mt-1">
-                  <h4 className="font-sans font-bold text-dark text-lg mb-1">Working Hours</h4>
-                  <p className="font-sans text-muted leading-relaxed text-sm"><b>Monday to Saturday</b></p>
-                  <p className="font-sans text-muted leading-relaxed text-sm">10:00 am to 7:30 pm</p>
-                  <p className="font-sans text-muted leading-relaxed text-sm"><b>Lunch</b> 2:30 pm to 4:00 pm</p>
-                  <p className="font-sans text-muted leading-relaxed text-sm"><b>Sunday</b> 10:00am to 2:30 pm</p>
+                <div className="text-[10px] text-amber-700 bg-amber-50 border border-amber-200/60 rounded px-1.5 py-0.5 w-max mt-1.5">
+                  Lunch: 2:30 pm – 4:00 pm
                 </div>
               </div>
-
-            </div>
-            
-            <div className="mt-2 text-sm font-bold text-green-700 bg-green-50 p-4 rounded-xl border border-green-200 inline-block w-max">
-              Consultation Fee: Just ₹200
             </div>
 
           </div>
 
-          {/* Right Column: Map & Exterior Image */}
-          <div className="flex flex-col gap-4 contact-element w-full">
+          {/* Right Column: Embedded Map & Directions */}
+          <div className="flex flex-col gap-3 contact-element w-full">
             
-            {/* Exterior Facility Snapshot */}
-            <div className="w-full h-40 md:h-48 rounded-[16px] overflow-hidden shadow-sm relative group">
-               <img 
-                 src="/images/elite-dental-clinic-sirsa-exterior.webp" 
-                 alt="Elite Dental Clinic building exterior in Sirsa" 
-                 loading="lazy"
-                 decoding="async"
-                 onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = '/images/fallback.webp'; }}
-                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-               />
-               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
-               <h4 className="absolute bottom-4 left-4 text-white font-bold tracking-tight z-10 flex items-center gap-2">
-                 <MapPin size={16} /> Elite Dental Clinic Facility
-               </h4>
-            </div>
-
-            {/* Embedded Map */}
-            <div className="w-full relative shadow-md rounded-[16px] overflow-hidden border border-gray-200 bg-gray-50 h-[200px] md:h-[260px]">
+            {/* Embedded Map Card */}
+            <div className="w-full relative shadow-md rounded-2xl overflow-hidden border border-[#9A7B4F]/25 bg-gray-50 h-[190px] sm:h-[220px] md:h-[260px] group">
               
               {/* Fallback Background Layer */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 grayscale opacity-80" style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <div className="bg-white/90 backdrop-blur p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center gap-2">
-                   <Map size={32} className="text-gray-400" />
-                   <span className="font-bold text-dark text-sm">Loading Map...</span>
+                <div className="bg-white/90 backdrop-blur p-3 rounded-xl border border-gray-100 shadow-sm flex flex-col items-center gap-1.5">
+                   <Map size={24} className="text-gray-400" />
+                   <span className="font-bold text-dark text-xs">Loading Map...</span>
                 </div>
               </div>
 
@@ -135,16 +145,26 @@ export default function Contact() {
                 title="Elite Dental Clinic Map Location"
                 onLoad={() => setMapLoaded(true)}
               />
+
+              {/* Floating Map Pin Badge */}
+              <div className="absolute top-2.5 right-2.5 z-20 bg-white/90 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-bold text-dark border border-[#9A7B4F]/30 shadow-xs flex items-center gap-1 pointer-events-none">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Open in Sirsa</span>
+              </div>
             </div>
 
-            {/* Get Directions Button */}
+            {/* Get Directions Button - Beautiful Luxury Action Pill */}
             <a 
               href={mapLink}
               target="_blank" 
               rel="noreferrer"
-              className="w-full bg-gray-100 hover:bg-gray-200 text-dark font-bold py-4 rounded-[16px] flex items-center justify-center gap-2 transition-colors border border-gray-200 shadow-sm"
+              className="w-full bg-gradient-to-r from-[#FAF6EE] via-white to-[#FAF6EE] hover:from-[#9A7B4F] hover:to-[#80633C] hover:text-white text-dark font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 border border-[#9A7B4F]/35 shadow-xs hover:shadow-md group/btn text-xs sm:text-sm active:scale-98"
             >
-              <Navigation size={18} className="text-[#9A7B4F]" /> Get Directions to Clinic
+              <div className="w-6 h-6 rounded-full bg-[#9A7B4F]/15 group-hover/btn:bg-white/20 flex items-center justify-center transition-colors">
+                <Navigation size={13} className="text-[#9A7B4F] group-hover/btn:text-white transition-colors" />
+              </div>
+              <span className="tracking-wide">Get Google Directions to Clinic</span>
+              <span className="text-[#9A7B4F] group-hover/btn:text-white group-hover/btn:translate-x-1 transition-all">&rarr;</span>
             </a>
           </div>
 

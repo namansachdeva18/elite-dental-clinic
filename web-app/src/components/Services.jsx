@@ -1,185 +1,282 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Sparkles, Layers, Scissors, Activity, ShieldCheck, Zap, Crown, Baby, Stethoscope } from 'lucide-react';
+import { 
+  Sparkles, 
+  Layers, 
+  Scissors, 
+  Activity, 
+  ShieldCheck, 
+  Zap, 
+  Crown, 
+  Moon, 
+  Smile, 
+  Shield, 
+  HeartHandshake, 
+  Stethoscope, 
+  ArrowUpRight,
+  Wind,
+  CheckCircle2
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SERVICES = [
+export const ALL_TREATMENTS = [
   {
-    id: "service-implants",
-    title: "Dental Implants in Sirsa",
-    description: "Restore missing teeth permanently with advanced dental implants in Sirsa. Get a natural-looking and long-lasting smile solution.",
-    icon: <ShieldCheck className="text-[#9A7B4F] w-8 h-8 mb-4" />
-  },
-  {
-    id: "service-braces",
-    title: "Orthodontics & Braces",
-    description: "Achieve perfectly aligned teeth with braces and clear aligners. Customized orthodontic treatments for all age groups.",
-    icon: <Layers className="text-[#9A7B4F] w-8 h-8 mb-4" />
+    id: "service-veneers",
+    title: "Veneers & Laminates",
+    desc: "Ultra-thin custom German porcelain shells to correct chips, gaps, and severe discolouration permanently.",
+    tag: "Hollywood Smile",
+    category: "COSMETIC",
+    pageUrl: "/services/porcelain-veneers",
+    Icon: Smile
   },
   {
     id: "service-smile-design",
-    title: "Smile Designing",
-    description: "Enhance your smile with personalized smile designing treatments using modern cosmetic dentistry techniques.",
-    icon: <Sparkles className="text-[#9A7B4F] w-8 h-8 mb-4" />
-  },
-  {
-    id: "service-rct",
-    title: "Root Canal Treatment (RCT) in Sirsa",
-    description: "Pain-free root canal treatment using advanced laser technology. Save infected teeth with quick and comfortable procedures.",
-    icon: <Activity className="text-[#9A7B4F] w-8 h-8 mb-4" />
-  },
-  {
-    id: "service-wisdom-tooth",
-    title: "Wisdom Tooth Removal",
-    description: "Safe and painless wisdom tooth extraction performed by experienced dental specialists.",
-    icon: <Scissors className="text-[#9A7B4F] w-8 h-8 mb-4" />
-  },
-  {
-    id: "service-whitening",
-    title: "Teeth Whitening in Sirsa",
-    description: "Brighten your smile with professional teeth whitening treatments for instant visible results.",
-    icon: <Zap className="text-[#9A7B4F] w-8 h-8 mb-4" />
+    title: "Smile Design",
+    desc: "Complete aesthetic transformation combining 3D digital smile design, veneers, and alignment planning.",
+    tag: "3D Digital Design",
+    category: "COSMETIC",
+    pageUrl: "/services/smile-makeover",
+    Icon: Sparkles
   },
   {
     id: "service-crowns",
-    title: "Dental Crowns & Caps",
-    description: "Protect and restore damaged teeth with high-quality dental crowns for long-lasting strength and aesthetics.",
-    icon: <Crown className="text-[#9A7B4F] w-8 h-8 mb-4" />
+    title: "Crowns & Bridges",
+    desc: "Metal-free Zirconia with 10-year warranty card & German ceramic for durable tooth restoration.",
+    tag: "10-Yr Warranty",
+    category: "RESTORATIVE",
+    pageUrl: "/services/dental-crowns-and-bridges",
+    Icon: Crown
   },
   {
-    id: "service-pediatric",
-    title: "Pediatric Dentistry",
-    description: "Gentle dental care for children in a safe and friendly environment ensuring healthy smiles from an early age.",
-    icon: <Baby className="text-[#9A7B4F] w-8 h-8 mb-4" />
+    id: "service-rct",
+    title: "Root Canal (RCT)",
+    desc: "Modern, virtually painless rotary & laser root canal therapy to save infected natural teeth without extraction.",
+    tag: "Painless Rotary",
+    category: "RESTORATIVE",
+    pageUrl: "/services/root-canal-treatment",
+    Icon: Activity
   },
   {
-    id: "service-emergency",
-    title: "Emergency Dental Care in Sirsa",
-    description: "Get immediate treatment for dental pain, injury, or infection with our 24/7 emergency dental services.",
-    icon: <Stethoscope className="text-[#9A7B4F] w-8 h-8 mb-4" />
+    id: "service-implants",
+    title: "Dental Implants",
+    desc: "Permanent titanium and zirconia tooth replacements designed for lifelong biting strength and natural looks.",
+    tag: "Lifetime Strength",
+    category: "RESTORATIVE",
+    pageUrl: "/services/dental-implants",
+    Icon: ShieldCheck
+  },
+  {
+    id: "service-braces",
+    title: "Clear Aligners & Braces",
+    desc: "Invisible customized aligners and precision self-ligating brackets for teens and adults with rapid alignment.",
+    tag: "Invisible Align",
+    category: "COSMETIC",
+    pageUrl: "/services/braces-and-aligners",
+    Icon: Layers
+  },
+  {
+    id: "service-wisdom",
+    title: "Wisdom Surgery",
+    desc: "Specialized minor oral surgery for impacted 3rd molars and instant wisdom tooth pain relief.",
+    tag: "Oral Surgery",
+    category: "SURGICAL",
+    pageUrl: "/services/wisdom-tooth-extraction",
+    Icon: Scissors
+  },
+  {
+    id: "service-extractions",
+    title: "Painless Extractions",
+    desc: "Gentle, atraumatic tooth extractions performed under local anaesthesia with minimal downtime.",
+    tag: "Atraumatic Care",
+    category: "SURGICAL",
+    pageUrl: "/services/wisdom-tooth-extraction",
+    Icon: HeartHandshake
+  },
+  {
+    id: "service-laser-fillings",
+    title: "Laser Fillings",
+    desc: "Tooth-coloured light-cured composite resin fillings & aesthetic dental crystal jewellery.",
+    tag: "Laser Cured",
+    category: "GENERAL",
+    pageUrl: "/services/root-canal-treatment",
+    Icon: Zap
+  },
+  {
+    id: "service-dentures",
+    title: "Dentures",
+    desc: "Latest flexible dentures, acrylic full/RPD dentures, and implant-supported fixed overdentures.",
+    tag: "Flexible & Implant",
+    category: "RESTORATIVE",
+    pageUrl: "/services/dental-implants",
+    Icon: Shield
+  },
+  {
+    id: "service-whitening",
+    title: "Teeth Whitening",
+    desc: "6–10 shades brighter teeth in 45 minutes using in-clinic LED bleaching systems and take-home kits.",
+    tag: "Instant Results",
+    category: "COSMETIC",
+    pageUrl: "/services/teeth-whitening",
+    Icon: Sparkles
+  },
+  {
+    id: "service-scaling",
+    title: "Laser Scaling",
+    desc: "Ultrasonic scaling for pyorrhoea, bleeding gums, bad breath treatment & deep periodontal maintenance.",
+    tag: "Ultrasonic Clean",
+    category: "GENERAL",
+    Icon: Stethoscope
+  },
+  {
+    id: "service-airway",
+    title: "Airway Orthodontics",
+    desc: "Pediatric & adult maxillary expansion widening upper dental arches and nasal breathing passages.",
+    tag: "Healthy Breathing",
+    category: "GENERAL",
+    Icon: Wind
+  },
+  {
+    id: "service-sleep-apnea",
+    title: "Sleep Apnea Care",
+    desc: "Custom-milled Mandibular Advancement Devices (MAD) as a comfortable, quiet alternative to CPAP masks.",
+    tag: "CPAP Alternative",
+    category: "GENERAL",
+    Icon: Moon
+  },
+  {
+    id: "service-tmj",
+    title: "TMJ & Jaw Joint Care",
+    desc: "End jaw clicking, locking, facial migraines, and clenching with precision Michigan decompression splints.",
+    tag: "Joint Relief",
+    category: "GENERAL",
+    Icon: Activity
+  },
+  {
+    id: "service-tongue-tie",
+    title: "Tongue Tie Release",
+    desc: "Gentle, 5-minute bloodless laser frenectomy for infants, children, and adults with zero stitches.",
+    tag: "Zero-Blood Laser",
+    category: "SURGICAL",
+    Icon: Scissors
   }
 ];
 
 export default function Services() {
-  const [activeCategory, setActiveCategory] = React.useState('ALL');
+  const [activeCategory, setActiveCategory] = useState('ALL');
   const containerRef = useRef(null);
 
   const categories = [
     { id: 'ALL', label: 'All Services' },
     { id: 'COSMETIC', label: 'Smile & Cosmetic' },
     { id: 'RESTORATIVE', label: 'Implants & Restorative' },
+    { id: 'SURGICAL', label: 'Laser & Surgery' },
     { id: 'GENERAL', label: 'General & Preventive' }
   ];
 
-  const categoryMap = {
-    'service-implants': 'RESTORATIVE',
-    'service-braces': 'COSMETIC',
-    'service-smile-design': 'COSMETIC',
-    'service-rct': 'RESTORATIVE',
-    'service-wisdom-tooth': 'RESTORATIVE',
-    'service-whitening': 'COSMETIC',
-    'service-crowns': 'RESTORATIVE',
-    'service-pediatric': 'GENERAL',
-    'service-emergency': 'GENERAL'
-  };
-
   const filteredServices = activeCategory === 'ALL' 
-    ? SERVICES 
-    : SERVICES.filter(s => categoryMap[s.id] === activeCategory);
+    ? ALL_TREATMENTS 
+    : ALL_TREATMENTS.filter(s => s.category === activeCategory);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.from('.service-card', {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top 85%',
-        },
-        y: 25,
-        duration: 0.5,
-        stagger: 0.06,
-        ease: 'power2.out',
-      });
+      gsap.fromTo('.treatment-luxury-card', 
+        { y: 18, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.45,
+          stagger: 0.04,
+          ease: 'power2.out',
+        }
+      );
     }, containerRef);
     return () => ctx.revert();
   }, [activeCategory]);
 
   return (
-    <section ref={containerRef} id="services" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-[#FDFBF7] border-b border-[#9A7B4F]/15">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="sr-only">Our Dental Services in Sirsa</h2>
+    <section ref={containerRef} id="services" className="py-8 md:py-12 px-3 sm:px-6 lg:px-12 bg-[#120E0A] text-white border-b border-[#9A7B4F]/25 relative overflow-hidden">
+      
+      {/* Ambient background gold glow spots */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-[#9A7B4F]/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         
-        <div className="text-center max-w-xl mx-auto mb-6">
-          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
-            Top Dental Clinic in Sirsa
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-6">
+          <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#D4AF37] uppercase font-bold bg-[#261E14] border border-[#9A7B4F]/30 px-3 py-1 rounded-full inline-block mb-1.5 shadow-xs">
+            Advanced Treatments • Sirsa
           </span>
-          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-2">
-            Premium Services. <span className="text-[#9A7B4F]">Zero Pain.</span>
-          </h3>
-          <p className="font-sans text-muted text-xs sm:text-sm">
-            Explore advanced doctor-led treatments tailored for precision, comfort, and longevity.
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mt-1 mb-1.5">
+            Clinical Excellence. <span className="bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C59B27] bg-clip-text text-transparent">Zero Discomfort.</span>
+          </h2>
+          <p className="font-sans text-gray-300 text-xs sm:text-sm max-w-lg mx-auto">
+            Specialized clinical excellence across aesthetic smile makeovers, laser surgery, and tooth replacements.
           </p>
         </div>
 
-        {/* Compact Interactive Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-8">
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setActiveCategory(cat.id)}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
-                activeCategory === cat.id
-                  ? 'bg-[#2B2317] text-[#EADBB6] shadow-md border border-[#D4AF37]/40 scale-105'
-                  : 'bg-white text-gray-600 hover:text-dark border border-gray-200 hover:border-[#9A7B4F]/40'
-              }`}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        {/* 2-Columns on Mobile (grid-cols-2), 2 on Tablet, 3 on Desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3.5">
+          {filteredServices.map((service) => {
+            const IconComponent = service.Icon;
+            const targetUrl = service.pageUrl || "#book";
+            return (
+              <a
+                key={service.id}
+                id={service.id}
+                href={targetUrl}
+                title={`Learn more about ${service.title} in Sirsa`}
+                className="treatment-luxury-card bg-gradient-to-b from-[#1C1813] via-[#17130F] to-[#120E0A] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-[#9A7B4F]/25 hover:border-[#D4AF37] hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] active:scale-95 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden cursor-pointer"
+              >
+                {/* Metallic Shimmer Sweep on Hover/Tap */}
+                <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] group-hover:animate-shimmerSweep pointer-events-none" />
 
-        {/* High-Density Compact Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4 items-stretch">
-          {filteredServices.map((service, i) => (
-            <div key={service.id} id={service.id} className="service-card h-full w-full">
-              <div className="group bg-white p-5 sm:p-6 rounded-2xl border border-[#9A7B4F]/20 shadow-xs hover:border-[#D4AF37] hover:shadow-[0_8px_25px_rgba(154,123,79,0.15)] hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between h-full relative overflow-hidden">
-                
-                {/* Decorative golden accent top bar */}
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gray-100 group-hover:bg-gradient-to-r group-hover:from-[#9A7B4F] group-hover:to-[#D4AF37] transition-all" />
+                {/* Ambient Golden Flare */}
+                <div className="absolute -top-10 -right-10 w-20 h-20 bg-[#D4AF37]/10 rounded-full blur-xl pointer-events-none group-hover:bg-[#D4AF37]/25 transition-colors" />
 
                 <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#9A7B4F]/20 flex items-center justify-center text-[#9A7B4F] group-hover:scale-110 group-hover:text-[#80633C] transition-all">
-                      {React.cloneElement(service.icon, { className: "w-5 h-5 mb-0" })}
+                  {/* Top Bar: Icon + EXPLORE Button */}
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#2B2317] border border-[#9A7B4F]/40 flex items-center justify-center text-[#D4AF37] group-hover:scale-110 group-hover:border-[#D4AF37] transition-all">
+                      <IconComponent size={15} className="sm:w-[17px] sm:h-[17px] text-[#D4AF37]" />
                     </div>
-                    <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-[#9A7B4F] bg-[#FAF8F5] px-2 py-0.5 rounded-full border border-[#9A7B4F]/15">
-                      Verified Care
-                    </span>
+
+                    {/* Explore Badge with Arrow */}
+                    <div className="flex items-center gap-1 bg-[#2B2317]/80 group-hover:bg-[#D4AF37] text-[#D4AF37] group-hover:text-[#120E0A] px-2 py-0.5 rounded-full border border-[#9A7B4F]/40 group-hover:border-[#D4AF37] text-[9px] font-mono font-bold tracking-wider transition-all">
+                      <span>EXPLORE</span>
+                      <ArrowUpRight size={10} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
                   </div>
-                  
-                  <h3 className="font-display font-bold text-base sm:text-lg text-dark mb-1.5 leading-snug group-hover:text-[#80633C] transition-colors">
+
+                  {/* Title */}
+                  <h3 className="font-display font-bold text-xs sm:text-sm text-white group-hover:text-[#EADBB6] transition-colors mb-1 leading-snug">
                     {service.title}
                   </h3>
-                  
-                  <p className="font-sans text-muted text-xs leading-relaxed">
-                    {service.description}
+
+                  {/* Description */}
+                  <p className="font-sans text-gray-300 text-[10px] sm:text-xs leading-relaxed line-clamp-2 sm:line-clamp-3 mb-2.5">
+                    {service.desc}
                   </p>
                 </div>
-                
-                <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
-                  <a href="#book" className="inline-flex items-center gap-1 text-xs font-bold text-[#9A7B4F] group-hover:text-dark transition-colors">
-                    <span>Consult Doctor</span>
-                    <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
-                  </a>
-                  <span className="text-[10px] text-gray-400 font-mono">Sirsa Clinic</span>
+
+                {/* Bottom Tag Pill */}
+                <div className="pt-2 border-t border-dashed border-white/10 flex items-center justify-between">
+                  <span className="inline-block text-[9px] sm:text-[10px] font-mono font-semibold text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/25 px-2 py-0.5 rounded-full group-hover:bg-[#D4AF37]/20 transition-colors">
+                    {service.tag}
+                  </span>
+                  <span className="text-[9px] text-gray-400 font-sans hidden sm:inline group-hover:text-[#F3E5AB]">
+                    View Details &rarr;
+                  </span>
                 </div>
-              </div>
-            </div>
-          ))}
+              </a>
+            );
+          })}
         </div>
 
       </div>
     </section>
   );
 }
+

@@ -123,10 +123,29 @@ body::after {
   to { width: 100%; }
 }
 
-.animate-galleryProgress {
-  animation: galleryProgressAnim 4s linear forwards;
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
 }
 
+.animate-floatSlow {
+  animation: floatSlow 3.5s ease-in-out infinite;
+}
 
+@keyframes subtlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
 
+.animate-subtlePulse {
+  animation: subtlePulse 2.8s ease-in-out infinite;
+}
 
+/* Card hover glow accent */
+.luxury-card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.luxury-card-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -10px rgba(154, 123, 79, 0.25);
+}

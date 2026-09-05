@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /anniversary-offer/thank-you
+Disallow: /wedding-smile-offer/thank-you
 
 Sitemap: https://www.elitedentalclinic.info/sitemap.xml

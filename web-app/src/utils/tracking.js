@@ -121,3 +121,12 @@ export function trackConversionEvent(eventName, eventParams = {}) {
     }
   }
 }
+
+export function trackPhoneCall(source = 'general') {
+  trackConversionEvent('phone_click', { click_source: source });
+}
+
+export function trackWhatsAppClick(source = 'general') {
+  trackConversionEvent('whatsapp_click', { click_source: source });
+}
+

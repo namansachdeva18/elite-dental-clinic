@@ -45,16 +45,16 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section ref={containerRef} id="clinic-tour" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-[#FDFBF7] border-b border-[#9A7B4F]/15">
+    <section ref={containerRef} id="clinic-tour" className="py-8 md:py-10 px-4 sm:px-6 lg:px-12 bg-[#FDFBF7] border-b border-[#9A7B4F]/15">
       <div className="max-w-5xl mx-auto gallery-frame">
-        <div className="text-center max-w-xl mx-auto mb-6">
-          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+        <div className="text-center max-w-xl mx-auto mb-4">
+          <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
             Virtual Tour
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-dark tracking-tight mt-0.5 mb-1">
             Inside Elite <span className="text-[#9A7B4F]">Dental Clinic</span>
           </h2>
-          <p className="font-sans text-muted text-xs sm:text-sm">
+          <p className="font-sans text-muted text-[11px] sm:text-xs">
             Take an interactive tour of our world-class, hygienic facility in Sirsa.
           </p>
         </div>

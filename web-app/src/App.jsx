@@ -13,23 +13,17 @@ import Footer from './components/Footer';
 import VideoPage from './components/VideoPage';
 import AnniversaryOffer from './pages/AnniversaryOffer';
 import AnniversaryThankYou from './pages/AnniversaryThankYou';
+import RootCanalPage from './pages/RootCanalPage';
+import DentalImplantsPage from './pages/DentalImplantsPage';
+import BracesAlignersPage from './pages/BracesAlignersPage';
+import TeethWhiteningPage from './pages/TeethWhiteningPage';
+import CrownsBridgesPage from './pages/CrownsBridgesPage';
+import WisdomToothPage from './pages/WisdomToothPage';
+import VeneersPage from './pages/VeneersPage';
+import SmileMakeoverPage from './pages/SmileMakeoverPage';
+import ContactPage from './pages/ContactPage';
 import { REVIEWS } from './components/Testimonials';
 import { initAttributionTracking } from './utils/tracking';
-
-// A mock placeholder for the SEO pages
-function ServiceSEOPage({ title }) {
-  return (
-    <div className="py-32 px-6 text-center min-h-[60vh] flex flex-col items-center justify-center">
-      <Helmet>
-        <title>{title} | Elite Dental Clinic Sirsa</title>
-        <meta name="description" content={`Expert ${title} at Elite Dental Clinic. Book your pain-free appointment with the best dentist in Sirsa.`} />
-      </Helmet>
-      <h1 className="text-4xl font-display font-bold text-dark mb-4">{title}</h1>
-      <p className="text-muted">Detailed SEO content (Cost, Recovery, FAQs) for {title} will be rendered here.</p>
-      <a href="/" className="mt-8 text-[#9A7B4F] font-bold underline">Return to Home</a>
-    </div>
-  );
-}
 
 // Scroll restoration component and UTM attribution initializer
 function ScrollToTop() {
@@ -69,10 +63,23 @@ function AppLayout() {
           <Route path="/anniversary-offer/thank-you" element={<AnniversaryThankYou />} />
           <Route path="/wedding-smile-offer/thank-you" element={<AnniversaryThankYou />} />
 
-          {/* SEO Service Pages */}
-          <Route path="/rct-treatment-sirsa" element={<ServiceSEOPage title="Root Canal Treatment in Sirsa" />} />
-          <Route path="/teeth-whitening-sirsa" element={<ServiceSEOPage title="Teeth Whitening in Sirsa" />} />
-          <Route path="/dental-implants-sirsa" element={<ServiceSEOPage title="Dental Implants in Sirsa" />} />
+          {/* High-Intent Service Landing Pages (Google Ads & Local SEO) */}
+          <Route path="/services/root-canal-treatment" element={<RootCanalPage />} />
+          <Route path="/services/dental-implants" element={<DentalImplantsPage />} />
+          <Route path="/services/braces-and-aligners" element={<BracesAlignersPage />} />
+          <Route path="/services/teeth-whitening" element={<TeethWhiteningPage />} />
+          <Route path="/services/dental-crowns-and-bridges" element={<CrownsBridgesPage />} />
+          <Route path="/services/wisdom-tooth-extraction" element={<WisdomToothPage />} />
+          <Route path="/services/porcelain-veneers" element={<VeneersPage />} />
+          <Route path="/services/smile-makeover" element={<SmileMakeoverPage />} />
+          
+          {/* Dedicated Location & Contact Page */}
+          <Route path="/contact" element={<ContactPage />} />
+
+          {/* Legacy / Alias URL Redirects */}
+          <Route path="/rct-treatment-sirsa" element={<RootCanalPage />} />
+          <Route path="/teeth-whitening-sirsa" element={<TeethWhiteningPage />} />
+          <Route path="/dental-implants-sirsa" element={<DentalImplantsPage />} />
           <Route path="/videos/prabhnoor-testimonial" element={<VideoPage />} />
         </Routes>
         
@@ -105,57 +112,63 @@ function App() {
 
   const schemaData = {
     "@context": "https://schema.org",
-    "@type": "Dentist",
-    "name": "Elite Dental Clinic",
-    "image": "https://www.elitedentalclinic.info/images/logo.webp",
-    "@id": "https://www.elitedentalclinic.info/#dentist",
-    "url": "https://www.elitedentalclinic.info",
-    "telephone": "+919306299901",
-    "priceRange": "$$",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Street Number 2, Multani Colony",
-      "addressLocality": "Sirsa",
-      "postalCode": "125055",
-      "addressCountry": "IN"
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "20:00"
-    },
-    "sameAs": [
-      "https://www.instagram.com/elitedentalclinic.sirsa"
-    ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": REVIEWS.length.toString(),
-      "bestRating": "5",
-      "worstRating": "1"
-    },
-    "review": REVIEWS.map((review) => ({
-      "@type": "Review",
-      "author": {
-        "@type": "Person",
-        "name": review.name
+    "@graph": [
+      {
+        "@type": ["Dentist", "MedicalBusiness", "LocalBusiness"],
+        "@id": "https://www.elitedentalclinic.info/#dentist",
+        "name": "Elite Dental Clinic",
+        "legalName": "Elite Dental Clinic Sirsa",
+        "image": "https://www.elitedentalclinic.info/images/hero-doctor.webp",
+        "logo": "https://www.elitedentalclinic.info/images/logo.webp",
+        "url": "https://www.elitedentalclinic.info",
+        "telephone": "+919467624898",
+        "priceRange": "₹₹",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Opp. City Diagnostic Centre, Near Dr. Lal Path Lab, Dabwali Road",
+          "addressLocality": "Sirsa",
+          "addressRegion": "Haryana",
+          "postalCode": "125055",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 29.5350,
+          "longitude": 75.0290
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "10:00",
+            "closes": "19:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "10:00",
+            "closes": "14:30"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/elitedentalclinic.sirsa"
+        ],
+        "employee": {
+          "@type": "Person",
+          "@id": "https://www.elitedentalclinic.info/#dr-nandini-bansal",
+          "name": "Dr. Nandini Bansal",
+          "jobTitle": "Chief Dental Surgeon",
+          "honorificPrefix": "Dr.",
+          "knowsAbout": ["Root Canal Treatment", "Dental Implants", "Laser Dentistry", "Cosmetic Smile Design", "Orthodontics"]
+        }
       },
-      "reviewBody": review.text,
-      "reviewRating": {
-        "@type": "Rating",
-        "ratingValue": "5",
-        "bestRating": "5",
-        "worstRating": "1"
+      {
+        "@type": "WebSite",
+        "@id": "https://www.elitedentalclinic.info/#website",
+        "url": "https://www.elitedentalclinic.info",
+        "name": "Elite Dental Clinic Sirsa"
       }
-    }))
+    ]
   };
 
   return (
@@ -163,13 +176,19 @@ function App() {
       <ScrollToTop />
       <Helmet>
         <title>Best Dental Clinic in Sirsa | Pain-Free Dentist | Elite Dental Clinic</title>
-        <meta name="description" content="Looking for the best dentist in Sirsa? Elite Dental Clinic offers pain-free RCT, implants, braces, and teeth whitening. Book your appointment today!" />
-        <meta name="keywords" content="dentist in Sirsa, best dental clinic in Sirsa, Root Canal Treatment, RCT, dental implants Sirsa, braces, teeth whitening, pain-free dentistry" />
+        <meta name="description" content="Elite Dental Clinic in Sirsa offers painless laser root canal treatment (RCT), dental implants, clear aligners, teeth whitening, and crowns by Dr. Nandini Bansal. Book your visit!" />
+        <meta name="keywords" content="dentist in Sirsa, dental clinic in Sirsa, best dentist in Sirsa, root canal treatment Sirsa, dental implants Sirsa, clear aligners, teeth whitening, pain-free dentistry" />
         <link rel="canonical" href="https://www.elitedentalclinic.info/" />
+        <meta name="geo.region" content="IN-HR" />
+        <meta name="geo.placename" content="Sirsa" />
+        <meta name="geo.position" content="29.5350;75.0290" />
+        <meta name="ICBM" content="29.5350, 75.0290" />
         <meta property="og:title" content="Best Dental Clinic in Sirsa | Pain-Free Dentist | Elite Dental Clinic" />
-        <meta property="og:description" content="Elite Dental Clinic offers top-notch, pain-free dental treatments in Sirsa. Contact us for RCT, implants, braces, and more." />
+        <meta property="og:description" content="Elite Dental Clinic offers painless laser root canals, dental implants, clear aligners, and restorative dental care in Sirsa, Haryana." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.elitedentalclinic.info/" />
+        <meta property="og:image" content="https://www.elitedentalclinic.info/images/logo.webp" />
+        <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
           {JSON.stringify(schemaData)}
         </script>

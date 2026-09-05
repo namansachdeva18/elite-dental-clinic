@@ -174,24 +174,26 @@ export default function AnniversaryOffer() {
       </Helmet>
 
       {/* =========================================================================
-          CAMPAIGN HEADER (Drastically simplified for Google Ads conversion focus)
+          CAMPAIGN HEADER (Beautified to match Homepage Navbar luxury aesthetics)
           ========================================================================= */}
-      <header className="sticky top-0 z-[80] bg-white/95 backdrop-blur-md border-b border-[#9A7B4F]/15 shadow-sm py-2.5 px-4 sm:px-8">
+      <header className="sticky top-0 z-[80] bg-white/95 backdrop-blur-md border-b border-[#9A7B4F]/20 shadow-[0_4px_20px_rgba(0,0,0,0.05)] py-2.5 px-4 sm:px-8 transition-all duration-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
-            <img 
-              src="/images/logo.webp" 
-              alt="Elite Dental Clinic Logo" 
-              className="h-8 sm:h-10 w-auto object-contain" 
-            />
+          {/* Logo with matching refined metallic gold gradient brand text */}
+          <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group z-50">
+            <div className="relative">
+              <img 
+                src="/images/logo.webp" 
+                alt="Elite Dental Clinic Logo" 
+                className="h-[36px] sm:h-[42px] md:h-[46px] w-auto object-contain group-hover:scale-105 transition-transform duration-300 drop-shadow-xs" 
+              />
+            </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-base sm:text-lg text-[#A38A5F] tracking-tight navbar-brand-text leading-tight">
+              <span className="font-display font-extrabold text-[16px] sm:text-[19px] md:text-[21px] tracking-tight bg-gradient-to-r from-[#80633C] via-[#A38A5F] to-[#6E5535] bg-clip-text text-transparent group-hover:brightness-110 transition-all leading-tight">
                 Elite Dental Clinic
               </span>
-              <span className="text-[9px] sm:text-[10px] font-mono tracking-widest text-muted uppercase">
-                Sirsa, Haryana
+              <span className="font-mono text-[8px] sm:text-[9.5px] uppercase tracking-widest text-[#9A7B4F]/80 font-bold -mt-0.5">
+                Sirsa • Pain-Free Care
               </span>
             </div>
           </Link>
@@ -201,28 +203,37 @@ export default function AnniversaryOffer() {
             <a 
               href={`tel:${CAMPAIGN_CONFIG.phone}`} 
               onClick={() => handlePhoneClick('header_call_button')}
-              className="hidden sm:flex items-center gap-1.5 bg-gray-50 hover:bg-gray-100 text-dark px-3 py-1.5 rounded-full text-xs font-bold border border-gray-200 transition-colors"
+              className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-[#FAF8F5] border border-[#9A7B4F]/25 text-dark hover:text-white hover:bg-[#9A7B4F] transition-all shadow-xs"
               aria-label="Call Elite Dental Clinic"
             >
-              <Phone size={13} className="text-[#9A7B4F]" />
-              <span>{CAMPAIGN_CONFIG.phoneDisplay}</span>
+              <Phone size={15} />
             </a>
 
             <button 
               onClick={() => handleWhatsAppClick('', 'header_whatsapp_button')}
-              className="hidden xs:flex items-center gap-1.5 bg-[#25D366] hover:bg-[#20bd5a] text-white px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-sm cursor-pointer"
+              className="hidden xs:flex items-center justify-center w-9 h-9 rounded-full bg-emerald-50 border border-emerald-300/40 text-emerald-600 hover:bg-emerald-600 hover:text-white transition-all shadow-xs cursor-pointer"
               aria-label="Chat on WhatsApp"
             >
-              <MessageCircle size={14} />
-              <span>WhatsApp</span>
+              <MessageCircle size={15} />
             </button>
+
+            {/* Mobile direct call button */}
+            <a 
+              href={`tel:${CAMPAIGN_CONFIG.phone}`} 
+              onClick={() => handlePhoneClick('header_call_button_mobile')}
+              className="flex xs:hidden items-center justify-center w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#9A7B4F]/25 text-[#80633C] shadow-xs active:scale-95"
+              aria-label="Call Clinic"
+            >
+              <Phone size={13} />
+            </a>
 
             <button 
               onClick={() => handleOpenLeadModal('', 'header_claim_offer')}
-              className="bg-gradient-to-r from-[#9A7B4F] to-[#80633C] hover:from-[#8A6D43] hover:to-[#6E5431] text-white px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-md shadow-[#9A7B4F]/20 hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center gap-1"
+              className="relative overflow-hidden bg-gradient-to-r from-[#9A7B4F] via-[#B89355] to-[#80633C] hover:brightness-110 text-white px-3.5 sm:px-5 py-2 rounded-full text-xs font-extrabold shadow-sm hover:shadow-md active:scale-95 transition-all cursor-pointer flex items-center gap-1.5"
             >
-              <Gift size={13} />
-              <span>Claim 20% Offer</span>
+              <div className="absolute inset-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-20deg] animate-shimmerSweep pointer-events-none" />
+              <Gift size={13} className="text-[#F3E5AB]" />
+              <span className="relative z-10">Claim 20% Offer</span>
             </button>
           </div>
 

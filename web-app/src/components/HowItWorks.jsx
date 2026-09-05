@@ -62,21 +62,21 @@ export default function HowItWorks() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="how-it-works" className="py-12 md:py-16 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden relative border-b border-[#9A7B4F]/15">
+    <section ref={sectionRef} id="how-it-works" className="py-8 md:py-10 px-4 sm:px-6 lg:px-12 bg-white overflow-hidden relative border-b border-[#9A7B4F]/15">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center max-w-xl mx-auto mb-10">
-          <span className="font-mono text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
+        <div className="text-center max-w-xl mx-auto mb-6">
+          <span className="font-mono text-[10px] sm:text-xs tracking-widest text-[#9A7B4F] uppercase font-bold">
             Transparent Care Process
           </span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-dark tracking-tight mt-1 mb-1">
+          <h2 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold text-dark tracking-tight mt-0.5 mb-1">
             How Your Treatment <span className="text-[#9A7B4F]">Works</span>
           </h2>
-          <p className="font-sans text-muted text-xs sm:text-sm">
+          <p className="font-sans text-muted text-[11px] sm:text-xs">
             A simple, predictable 3-step pathway from your first consultation to a pain-free, healthy smile.
           </p>
         </div>
 
-        <div className="relative flex flex-col md:flex-row justify-between gap-12 md:gap-8 max-w-5xl mx-auto">
+        <div className="relative flex flex-col md:flex-row justify-between gap-6 md:gap-6 max-w-5xl mx-auto">
           {/* Connecting Line (Desktop) */}
           <div className="absolute top-12 left-[10%] w-[80%] h-px hidden md:block z-0">
             <svg width="100%" height="2" className="overflow-visible">

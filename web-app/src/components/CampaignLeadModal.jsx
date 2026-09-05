@@ -38,6 +38,37 @@ export default function CampaignLeadModal({
     }
   }, [isOpen]);
 
+  // Global event listener to intercept all #book CTA clicks and custom events
+  useEffect(() => {
+    const handleCustomTrigger = (e) => {
+      if (e.detail?.treatment) {
+        setFormData(prev => ({ ...prev, treatment: e.detail.treatment }));
+      }
+      if (typeof onClose === 'function' && !isOpen) {
+        window.dispatchEvent(new Event('open-campaign-modal-internal'));
+      }
+    };
+
+    const clickInterceptor = (e) => {
+      const target = e.target.closest('a');
+      if (target) {
+        const href = target.getAttribute('href');
+        if (href === '#book') {
+          e.preventDefault();
+          window.dispatchEvent(new Event('open-campaign-modal-internal'));
+        }
+      }
+    };
+
+    window.addEventListener('open-booking-modal', handleCustomTrigger);
+    document.addEventListener('click', clickInterceptor);
+
+    return () => {
+      window.removeEventListener('open-booking-modal', handleCustomTrigger);
+      document.removeEventListener('click', clickInterceptor);
+    };
+  }, [isOpen, onClose]);
+
   // Keep treatment in sync if changed by parent prop
   useEffect(() => {
     if (initialTreatment) {

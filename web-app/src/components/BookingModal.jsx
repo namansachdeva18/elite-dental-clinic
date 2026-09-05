@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { X, User, Phone, CheckCircle, Calendar, Clock, Stethoscope, MessageSquare, Loader2 } from 'lucide-react';
+import { trackConversionEvent } from '../utils/tracking';
 
 export default function BookingModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,13 +19,16 @@ export default function BookingModal() {
 
   // Global event listener to intercept all #book CTA clicks
   useEffect(() => {
-    const handleTrigger = () => setIsOpen(true);
+    const handleTrigger = (e) => {
+      // Direct all book button requests to the 20% Anniversary offer modal
+      window.dispatchEvent(new CustomEvent('open-campaign-modal-internal', { detail: e.detail }));
+    };
     
     const clickInterceptor = (e) => {
       const target = e.target.closest('a');
       if (target && target.getAttribute('href') === '#book') {
         e.preventDefault();
-        setIsOpen(true);
+        window.dispatchEvent(new Event('open-campaign-modal-internal'));
       }
     };
 
@@ -91,8 +95,16 @@ export default function BookingModal() {
         throw new Error("Web3Forms API Submission failed");
       }
 
+      // Fire conversion tracking event
+      trackConversionEvent('appointment_submit', {
+        treatment: formData.treatment,
+        preferred_date: formData.date,
+        preferred_time: formData.time,
+        lead_type: 'consultation_modal'
+      });
+
       // 3. Formatting the precise WhatsApp Message requested
-      const waLink = `https://wa.me/919306299901?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment%20for%20${encodeURIComponent(formData.treatment)}%20on%20${encodeURIComponent(formData.date)}%20at%20${encodeURIComponent(formData.time)}.`;
+      const waLink = `https://wa.me/919467624898?text=Hi%20Elite%20Dental%20Clinic,%20I%20want%20to%20book%20an%20appointment%20for%20${encodeURIComponent(formData.treatment)}%20on%20${encodeURIComponent(formData.date)}%20at%20${encodeURIComponent(formData.time)}.`;
 
       // 4. Show Success & Execute Redirect
       setIsSuccess(true);
@@ -227,11 +239,11 @@ export default function BookingModal() {
             </form>
 
             <div className="flex flex-col items-center mt-5 gap-1 pt-4 border-t border-gray-100">
-               <span className="font-sans text-xs font-bold text-red-500 uppercase tracking-widest text-center animate-pulse">
-                 ⚡ Only 3 slots left today 
+               <span className="font-sans text-xs font-bold text-amber-700 uppercase tracking-widest text-center">
+                 ⚡ Limited consultation slots today 
                </span>
                <span className="font-sans text-[11px] text-muted text-center tracking-wide">
-                 100% pain-free treatment guaranteed.
+                 Designed for maximum patient comfort & gentle clinical care.
                </span>
             </div>
 
